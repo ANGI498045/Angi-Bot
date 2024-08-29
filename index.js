@@ -1,6 +1,6 @@
 const { Client, GatewayIntentBits, Events, ActivityType, Collection } = require("discord.js");
 const { token } = require("./config.json");
-const { EmbedBuilder } = require("@discordjs/builders");
+const { EmbedBuilder } = require("@discordjs/builders"); 
 const client = new Client({ intents:
     [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
 });
@@ -57,6 +57,7 @@ for (const folder of commandFolders) {
 
 client.on(Events.InteractionCreate, async interaction => {
     if(!interaction.isChatInputCommand()) return;
+    if(interaction.author.bot) return;
 
     const command = interaction.client.commands.get(interaction.commandName);
     if (!command) {
