@@ -17,7 +17,7 @@ module.exports = {
             await interaction.reply("Membre débannit !")
         } catch (error) {
             console.error(error);
-            interaction.reply("Erreur en débanissant le membre")
+            interaction.reply({content: "Erreur en débanissant le membre", ephemeral: true});
         }
     },
 };
