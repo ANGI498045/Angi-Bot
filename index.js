@@ -33,7 +33,9 @@ client.on(Events.GuildMemberRemove, async (member) => {
         .setColor(0x0099ff)
         .setTimestamp()
     const channel = client.channels.cache.get("1209468207295897711");
-    channel.send({ embeds: [embed] });
+    if (!member.user.bot) {
+        channel.send({ embeds: [embed] });
+    }
 });
 
 client.commands = new Collection();
