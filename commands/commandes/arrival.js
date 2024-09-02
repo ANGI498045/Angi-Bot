@@ -1,10 +1,11 @@
 const { EmbedBuilder } = require("@discordjs/builders");
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("arrival")
     .setDescription("Envoie un message d'arrivée")
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addUserOption(option =>
         option.setName("membre")
         .setDescription("Le membre qui est arrivé")
