@@ -15,7 +15,7 @@ module.exports = {
             const embed = new EmbedBuilder()
                         .addFields({name: "Nouveau Membre", value: user})
                         .setColor(0x0099ff)
-                        .setTimeStamp()
+                        .setTimestamp()
             interaction.channel.send({embeds: [embed]});
         } catch (error) {
             await console.error(error);
