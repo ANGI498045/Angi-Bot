@@ -13,10 +13,10 @@ module.exports = {
         try {
             const user = interaction.options.getUser("membre");
             const embed = new EmbedBuilder()
-                        .addFields({name: "Nouveau Membre", value: user})
-                        .setColor(0x0099ff)
-                        .setTimestamp()
-            interaction.channel.send({embeds: [embed]});
+            .addFields({name: "Nouveau Membre", value: `${user} a rejoint le serveur ! Bienvenue !`})
+            .setColor(0x0099ff)
+            .setTimestamp()
+            interaction.channel.send({ embeds: [embed] });
         } catch (error) {
             await console.error(error);
             await interaction.reply({content: "Erreur en envoyant le message", ephemeral: true});
