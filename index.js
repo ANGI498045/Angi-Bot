@@ -26,7 +26,7 @@ client.on(Events.GuildMemberAdd, async (member) => {
             channel.send({ embeds: [embed] }); 
        member.roles.add(roleView);
         } catch (error) {
-            await console.error(error)
+            console.error(error)
             await channelL.send("Erreur avec l'arrivée d'un membre.")
         }
        }
