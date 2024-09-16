@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, Client } = require("discord.js");
+const { SlashCommandBuilder, Client, GatewayIntentBits } = require("discord.js");
 const client = new Client({ intents:
     [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
 });
