@@ -14,6 +14,6 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setTitle(msg)
             .setColor("0099ff")
-        interaction.channel.send({ embeds: [embed] });
+        interaction.reply({ embeds: [embed] });
     },
 };
