@@ -3,7 +3,7 @@ const client = new Client({ intents:
     [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
 });
 const {channelLogs} = require("../../config.json");
-const channelL = client.channels.cache.get(channelLogs);
+const channel = client.channels.cache.get(channelLogs);
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -36,11 +36,10 @@ module.exports = {
                 .setTitle("Mute")
                 .addFields({title: `Le membre ${member} a été mute pour ${duration} milisecondes.`, value: `Raison: ${reason}`})
                 .setTimestamp()
-            await channelL.send({embeds: [embed]});
+            await channel.send({embeds: [embed]});
         } catch (error) {
             console.error(error);
-            await interaction.reply({content: "Erreur en rendant le membre muet.", ephemeral: true});
-            await channelL.send('Erreur avec la commande: "mute"');
+            await channel.send('Erreur avec la commande: "mute"');
         }
     },
 };

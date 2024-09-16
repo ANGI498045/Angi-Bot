@@ -3,6 +3,7 @@ const client = new Client({ intents:
     [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
 });
 const {channelLogs} = require("../../config.json");
+const channel = client.channels.cache.get(channelLogs);
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -26,12 +27,9 @@ module.exports = {
         try {
 	        const newCommand = require(`./${command.data.name}.js`);
 	        interaction.client.commands.set(newCommand.data.name, newCommand);
-	        await interaction.reply({ content: `La commande \`${newCommand.data.name}\` a été actualisée !`, ephemeral: true});
-            const channel = client.channels.cache.get(channelLogs);
-            await channel.send(`Actualisation de la commande \`${newCommand.data.name}\``);
+	        await channel.send(`La commande \`${newCommand.data.name}\` a été actualisée !`);
         } catch (error) {
 	        console.error(error);
-	        await interaction.reply(`Erreur en rechargeant la commande \`${command.data.name}\`:\n\`${error.message}\``);
             const channel = client.channels.cache.get(channelLogs);
             await channel.send(`Erreur avec la commande: "reload" (rechargement de la commande \`${command.data.name}\`)`);
         }

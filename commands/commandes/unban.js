@@ -22,7 +22,6 @@ module.exports = {
             await interaction.reply("Membre débannit !")
         } catch (error) {
             console.error(error);
-            interaction.reply({content: "Erreur en débanissant le membre", ephemeral: true});
             const channel = client.channels.cache.get(ChannelLogs);
             channel.send('Erreur avec la commande: "unban"');
         }

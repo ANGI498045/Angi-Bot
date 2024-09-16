@@ -39,13 +39,13 @@ client.on(Events.GuildMemberRemove, async (member) => {
         .setColor(0x0099ff)
         .setTimestamp()
     const channel = client.channels.cache.get("1209468207295897711");
-    const channelL = client.channels.cache.get(channelLogs);
     if (!member.user.bot) {
         try {
             channel.send({ embeds: [embed] });
     } catch (error) {
         console.error(error)
-        channelL.send("Erreur avec le départ d'un membre");
+        const channel = client.channels.cache.get(channelLogs);
+        channel.send("Erreur avec le départ d'un membre");
     }
 }
 });

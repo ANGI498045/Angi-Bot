@@ -4,7 +4,7 @@ const client = new Client({ intents:
     [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
 });
 const {channelLogs} = require("../../config.json");
-const channelL = client.channels.cache.get(channelLogs)
+const channel = client.channels.cache.get(channelLogs)
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -25,8 +25,7 @@ module.exports = {
             interaction.channel.send({ embeds: [embed] });
         } catch (error) {
             await console.error(error);
-            await interaction.reply({content: "Erreur en envoyant le message", ephemeral: true});
-            await channelL.send('Erreur avec la commande: "arrival"');
+            await channel.send('Erreur avec la commande: "arrival"');
         }
     },
 };

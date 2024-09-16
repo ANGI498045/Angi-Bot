@@ -13,7 +13,6 @@ module.exports = {
             await interaction.reply("Je suis bien connecté !")
         } catch (error) {
             console.error(error)
-            await interaction.reply("Bot connecté, mais problème avec la commande...")
             const channel = client.channels.cache.get(channelLogs);
             channel.send('Erreur avec la commande "online"');
         }

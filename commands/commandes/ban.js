@@ -3,7 +3,7 @@ const client = new Client({ intents:
     [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
 });
 const {channelLogs} = require("../../config.json");
-const channelL = client.channels.cache.get(channelLogs);
+const channel = client.channels.cache.get(channelLogs);
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -29,11 +29,10 @@ module.exports = {
                 const embed = new EmbedBuilder()
                     .setTitle("Bannissement")
                     .addFields({title: `Le membre ${user.username} a été banni.`, value: `Raison: ${reason}.`});
-                await channelL.send({embeds: [embed]});
+                await channel.send({embeds: [embed]});
             } catch (error) {
                 console.error(error);
-                await interaction.reply({ content: `Erreur en bannissant le membre.`, ephemeral: true});
-                await channelL.send('Erreur avec la commande: "ban"');
+                await channel.send('Erreur avec la commande: "ban"');
             }
         },
 };
