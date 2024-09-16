@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits, Events, ActivityType, Collection } = require("discord.js");
-const { token } = require("./config.json");
+const { token, channelLogs } = require("./config.json");
 const { EmbedBuilder } = require("@discordjs/builders"); 
 const client = new Client({ intents:
     [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
@@ -18,12 +18,18 @@ client.on(Events.GuildMemberAdd, async (member) => {
         .setColor(0x0099ff)
         .setTimestamp()
     const channel = client.channels.cache.get("1209468207295897711");
+    const channelL = client.channels.cache.get(channelLogs);
     const roleView = "1209450123189559307";
     const roleBot = "1273621232759341057";
     if (!member.user.bot) {
-       channel.send({ embeds: [embed] }); 
+        try {
+            channel.send({ embeds: [embed] }); 
        member.roles.add(roleView);
-    }
+        } catch (error) {
+            await console.error(error)
+            await channelL.send("Erreur avec l'arrivée d'un membre.")
+        }
+       }
     if (member.user.bot) member.roles.add(roleBot);
 });
 
@@ -33,9 +39,15 @@ client.on(Events.GuildMemberRemove, async (member) => {
         .setColor(0x0099ff)
         .setTimestamp()
     const channel = client.channels.cache.get("1209468207295897711");
+    const channelL = client.channels.cache.get(channelLogs);
     if (!member.user.bot) {
-        channel.send({ embeds: [embed] });
+        try {
+            channel.send({ embeds: [embed] });
+    } catch (error) {
+        console.error(error)
+        channelL.send("Erreur avec le départ d'un membre");
     }
+}
 });
 
 client.commands = new Collection();

@@ -1,9 +1,14 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits, Client } = require("discord.js");
+const client = new Client({ intents:
+    [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
+});
+const {channelLogs} = require("../../config.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("reload")
         .setDescription("Actualise une commande")
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption(option => 
             option.setName("commande")
             .setDescription("La commande à actualiser")
@@ -22,9 +27,13 @@ module.exports = {
 	        const newCommand = require(`./${command.data.name}.js`);
 	        interaction.client.commands.set(newCommand.data.name, newCommand);
 	        await interaction.reply({ content: `La commande \`${newCommand.data.name}\` a été actualisée !`, ephemeral: true});
+            const channel = client.channels.cache.get(channelLogs);
+            await channel.send(`Actualisation de la commande \`${newCommand.data.name}\``);
         } catch (error) {
 	        console.error(error);
 	        await interaction.reply(`Erreur en rechargeant la commande \`${command.data.name}\`:\n\`${error.message}\``);
+            const channel = client.channels.cache.get(channelLogs);
+            await channel.send(`Erreur avec la commande: "reload" (rechargement de la commande \`${command.data.name}\`)`);
         }
             
     },

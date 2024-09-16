@@ -1,9 +1,14 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits, Client } = require("discord.js");
+const client = new Client({ intents:
+    [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
+});
+const { ChannelLogs } = require("../../config.json")
 
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("unban")
     .setDescription("Débannit un membre")
+    .setDefaultMemberPermissions(PermissionFlagsBits.BanMembers)
     .addStringOption(option =>
         option.setName("membre")
         .setDescription("Le membre à débannir")
@@ -18,6 +23,8 @@ module.exports = {
         } catch (error) {
             console.error(error);
             interaction.reply({content: "Erreur en débanissant le membre", ephemeral: true});
+            const channel = client.channels.cache.get(ChannelLogs);
+            channel.send('Erreur avec la commande: "unban"');
         }
     },
 };

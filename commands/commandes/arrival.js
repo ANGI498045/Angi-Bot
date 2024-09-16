@@ -1,5 +1,10 @@
 const { EmbedBuilder } = require("@discordjs/builders");
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits, Client } = require("discord.js");
+const client = new Client({ intents:
+    [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
+});
+const {channelLogs} = require("../../config.json");
+const channelL = client.channels.cache.get(channelLogs)
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -21,6 +26,7 @@ module.exports = {
         } catch (error) {
             await console.error(error);
             await interaction.reply({content: "Erreur en envoyant le message", ephemeral: true});
+            await channelL.send('Erreur avec la commande: "arrival"');
         }
     },
 };

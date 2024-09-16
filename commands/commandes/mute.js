@@ -1,9 +1,15 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits, Client, EmbedBuilder } = require("discord.js");
+const client = new Client({ intents:
+    [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
+});
+const {channelLogs} = require("../../config.json");
+const channelL = client.channels.cache.get(channelLogs);
 
 module.exports = {
     data: new SlashCommandBuilder()
     .setName("mute")
     .setDescription("Rend muet un membre")
+    .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
     .addUserOption(option =>
         option.setName("membre")
         .setDescription("Le membre à rendre muet")
@@ -26,10 +32,16 @@ module.exports = {
 
         try {
             member.timeout(duration)
-            return interaction.channel.send(`Le membre ${member} a été mute pour ${duration} milisecondes. Raison: ${reason}.`)
+            await interaction.channel.send(`Le membre ${member} a été mute pour ${duration} milisecondes. Raison: ${reason}.`);
+            const embed = new EmbedBuilder()
+                .setTitle("Mute")
+                .addFields({title: `Le membre ${member} a été mute pour ${duration} milisecondes.`, value: `Raison: ${reason}`})
+                .setTimestamp()
+            await channelL.send({embeds: [embed]});
         } catch (error) {
             console.error(error);
-            return interaction.reply({content: "Erreur en rendant le membre muet.", ephemeral: true});
+            await interaction.reply({content: "Erreur en rendant le membre muet.", ephemeral: true});
+            await channelL.send('Erreur avec la commande: "mute"');
         }
     },
 };

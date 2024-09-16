@@ -1,4 +1,9 @@
-const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits, Client, EmbedBuilder } = require("discord.js");
+const client = new Client({ intents:
+    [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
+});
+const {channelLogs} = require("../../config.json");
+const channelL = client.channels.cache.get(channelLogs);
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -22,9 +27,14 @@ module.exports = {
             try {
                 await interaction.guild.members.ban(user.id, { reason });
                 await interaction.reply({ content: `${user.username} a été banni. Raison: ${reason}.`});
+                const embed = new EmbedBuilder()
+                    .setTitle("Bannissement")
+                    .addFields({title: `Le membre ${user.username} a été banni.`, value: `Raison: ${reason}.`});
+                await channelL.send({embeds: [embed]});
             } catch (error) {
                 console.error(error);
                 await interaction.reply({ content: `Erreur en bannissant le membre.`, ephemeral: true});
+                await channelL.send('Erreur avec la commande: "ban"');
             }
         },
 };

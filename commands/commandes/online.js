@@ -1,4 +1,8 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, Client } = require("discord.js");
+const client = new Client({ intents:
+    [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
+});
+const {channelLogs} = require("../../config.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -10,6 +14,8 @@ module.exports = {
         } catch (error) {
             console.error(error)
             await interaction.reply("Bot connecté, mais problème avec la commande...")
+            const channel = client.channels.cache.get(channelLogs);
+            channel.send('Erreur avec la commande "online"');
         }
     },
 }

@@ -1,4 +1,8 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, Client } = require("discord.js");
+const client = new Client({ intents:
+    [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
+});
+const {channelLogs} = require("../../config.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -14,6 +18,13 @@ module.exports = {
         const embed = new EmbedBuilder()
             .setTitle(msg)
             .setColor("0099ff")
-        interaction.reply({ embeds: [embed] });
+        try {
+            interaction.reply({ embeds: [embed] });
+        } catch (error) {
+            console.error(error)
+            const channel = client.channels.cache.get(channelLogs);
+            channel.send('Erreur avec la commande: "send"');
+        }
+        
     },
 };
