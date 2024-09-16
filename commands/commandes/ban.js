@@ -26,7 +26,6 @@ module.exports = {
 
             try {
                 await interaction.guild.members.ban(user.id, { reason });
-                await interaction.reply({ content: `${user.username} a été banni. Raison: ${reason}.`});
                 const embed = new EmbedBuilder()
                     .setTitle("Bannissement")
                     .addFields({title: `Le membre ${user.username} a été banni.`, value: `Raison: ${reason}.`});

@@ -26,7 +26,6 @@ module.exports = {
             try {
                 const member = await interaction.guild.members.fetch(user.id);
                 await member.kick(reason);
-                await interaction.reply(`Le membre ${user.username} a été expulsé. Raison: ${reason}.`);
                 const embed = new EmbedBuilder()
                     .setTitle("Expulsion")
                     .addFields({title: `Le membre ${user.username} a été expulsé.`, value: `Raison: ${reason}`})

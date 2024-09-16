@@ -32,7 +32,6 @@ module.exports = {
 
         try {
             member.timeout(duration)
-            await interaction.channel.send(`Le membre ${member} a été mute pour ${duration} milisecondes. Raison: ${reason}.`);
             const embed = new EmbedBuilder()
                 .setTitle("Mute")
                 .addFields({title: `Le membre ${member} a été mute pour ${duration} milisecondes.`, value: `Raison: ${reason}`})
