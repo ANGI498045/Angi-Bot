@@ -14,7 +14,7 @@ client.on(Events.ClientReady, async readyClient => {
 
 client.on(Events.GuildMemberAdd, async (member) => {
     const embed = new EmbedBuilder()
-        .addFields({name: "Nouveau Membre", value: `${member.user.tag} a rejoint le serveur ! Bienvenue !`})
+        .addFields({name: "Nouveau Membre", value: `${member.user} a rejoint le serveur ! Bienvenue !`})
         .setColor(0x0099ff)
         .setTimestamp()
     const channel = client.channels.cache.get("1209468207295897711");
