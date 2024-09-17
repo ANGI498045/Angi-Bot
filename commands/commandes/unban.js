@@ -1,8 +1,6 @@
-const { SlashCommandBuilder, PermissionFlagsBits, Client, GatewayIntentBits } = require("discord.js");
-/*const client = new Client({ intents:
-    [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
-});
-const { ChannelLogs } = require("../../config.json")*/
+const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
+const { ChannelLogs } = require("../../config.json");
+const channel = interaction.guild.channels.cache.get(ChannelLogs);
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -16,14 +14,22 @@ module.exports = {
     ),
     async execute(interaction) {
         const user = interaction.options.getString("membre")
-
         try {
             await interaction.guild.bans.remove(user);
-            await interaction.reply("Membre débannit !")
+            const embed = new EmbedBuilder()
+                .setTitle("Débanissement")
+                .setDescription(`Le membre ${user} a été débanni.`)
+                .setTimestamp()
+                .setColor(0x0099ff)
+            await channel.send({embeds: [embed]});
         } catch (error) {
             console.error(error);
-            //const channel = client.channels.cache.get(ChannelLogs);
-            //channel.send('Erreur avec la commande: "unban"');
+            const embed2 = new EmbedBuilder()
+                .setTitle("Erreur")
+                .setColor(0xC11919)
+                .setDescription("Erreur avec la commande: \`unban\`")
+                .setTimestamp()
+            await channel.send({embeds: [embed2]});
         }
     },
 };

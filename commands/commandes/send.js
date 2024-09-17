@@ -1,8 +1,6 @@
-const { SlashCommandBuilder, EmbedBuilder, Client, GatewayIntentBits } = require("discord.js");
-/*const client = new Client({ intents:
-    [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
-});
-const {channelLogs} = require("../../config.json");*/
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const {channelLogs} = require("../../config.json");
+const channel = interaction.guild.channels.get(channelLogs);
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -17,13 +15,23 @@ module.exports = {
         const msg = interaction.options.getString("message");
         const embed = new EmbedBuilder()
             .setTitle(msg)
-            .setColor("0099ff")
+            .setColor(0x0099ff)
         try {
-            interaction.reply({ embeds: [embed] });
+            await interaction.reply({ embeds: [embed] });
+            const embed3 = new EmbedBuilder()
+                .setTitle("Commande")
+                .setDescription("La commande \`send\` a été utilisée.")
+                .setColor(0x0099ff)
+                .setTimestamp()
+            await channel.send({embeds: [embed3]});
         } catch (error) {
             console.error(error)
-            //const channel = client.channels.cache.get(channelLogs);
-            //channel.send('Erreur avec la commande: "send"');
+            const embed2 = new EmbedBuilder()
+                .setTitle("Erreur")
+                .setColor(0xC11919)
+                .setDescription("Erreur avec la commande: \`send\`")
+                .setTimestamp()
+            await channel.send({embeds: [embed2]});
         }
         
     },
