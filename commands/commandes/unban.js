@@ -1,6 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
 const { ChannelLogs } = require("../../config.json");
-const channel = interaction.guild.channels.cache.get(ChannelLogs);
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -13,6 +12,7 @@ module.exports = {
         .setRequired(true)
     ),
     async execute(interaction) {
+        const channel = interaction.guild.channels.cache.get(ChannelLogs);
         const user = interaction.options.getString("membre")
         try {
             await interaction.guild.bans.remove(user);

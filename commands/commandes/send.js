@@ -1,6 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const {channelLogs} = require("../../config.json");
-const channel = interaction.guild.channels.get(channelLogs);
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -12,6 +11,7 @@ module.exports = {
         .setRequired(true)
     ),
     async execute(interaction) {
+        const channel = interaction.guild.channels.get(channelLogs);
         const msg = interaction.options.getString("message");
         const embed = new EmbedBuilder()
             .setTitle(msg)
