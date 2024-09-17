@@ -11,7 +11,7 @@ module.exports = {
         .setRequired(true)
     ),
     async execute(interaction) {
-        const channel = interaction.guild.channels.get(channelLogs);
+        const channel = interaction.guild.channels.cache.get(channelLogs);
         const msg = interaction.options.getString("message");
         const embed = new EmbedBuilder()
             .setTitle(msg)

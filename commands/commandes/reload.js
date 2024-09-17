@@ -1,9 +1,5 @@
-const { SlashCommandBuilder, PermissionFlagsBits, Client, GatewayIntentBits } = require("discord.js");
-/*const client = new Client({ intents:
-    [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
-});
+const { SlashCommandBuilder, PermissionFlagsBits, Client, GatewayIntentBits, EmbedBuilder } = require("discord.js");
 const {channelLogs} = require("../../config.json");
-const channel = client.channels.cache.get(channelLogs);*/
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -27,12 +23,22 @@ module.exports = {
         try {
 	        const newCommand = require(`./${command.data.name}.js`);
 	        interaction.client.commands.set(newCommand.data.name, newCommand);
-	        await interaction.channel.send(`La commande \`${newCommand.data.name}\` a été actualisée !`);
+            const channel = interaction.guild.channels.cache.get(channelLogs);
+            const embed1 = new EmbedBuilder()
+                .setTitle("Commande")
+                .setDescription("La commande \`reload\` a été utilisée")
+	        await interaction.channel.send({content: `La commande \`${newCommand.data.name}\` a été actualisée !`, ephemeral: true});
+            await channel.send({embeds: [embed1]});
         } catch (error) {
 	        console.error(error);
-            const channel = client.channels.cache.get(channelLogs);
-            //await channel.send(`Erreur avec la commande: "reload" (rechargement de la commande \`${command.data.name}\`)`);
-        }
+            const channel = interaction.guild.channels.cache.get(channelLogs);
+            const embed = new EmbedBuilder()
+                .setTitle("Erreur")
+                .setColor(0xC11919)   
+                .setDescription("Erreur avec la commande: \`reload\`")
+                .setTimestamp()
+            channel.send({embeds: [embed]});
+            }
             
     },
 };
