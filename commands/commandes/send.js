@@ -17,13 +17,6 @@ module.exports = {
             .setTitle(msg)
             .setColor(0x0099ff);
             await interaction.reply({ embeds: [embed] });
-            /*const embed2 = new EmbedBuilder()
-                .setTitle("Commande")
-                .setDescription("La commande \`send\` a été utilisée.")
-                .setColor(0x0099ff)
-                .setTimestamp();
-            const channel = interaction.guild.channels.cache.get(channelLogs);
-            await channel.send({embeds: [embed2]});*/
         } catch (error) {
             console.error(error)
             const embed3 = new EmbedBuilder()
