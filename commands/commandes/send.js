@@ -11,7 +11,6 @@ module.exports = {
         .setRequired(true)
     ),
     async execute(interaction) {
-        const channel = interaction.guild.channels.cache.get(channelLogs);
         const msg = interaction.options.getString("message");
         const embed = new EmbedBuilder()
             .setTitle(msg)
@@ -23,6 +22,7 @@ module.exports = {
                 .setDescription("La commande \`send\` a été utilisée.")
                 .setColor(0x0099ff)
                 .setTimestamp()
+            const channel = interaction.guild.channels.cache.get(channelLogs);
             await channel.send({embeds: [embed3]});
         } catch (error) {
             console.error(error)
@@ -31,6 +31,7 @@ module.exports = {
                 .setColor(0xC11919)
                 .setDescription("Erreur avec la commande: \`send\`")
                 .setTimestamp()
+            const channel = interaction.guild.channels.cache.get(channelLogs);
             await channel.send({embeds: [embed2]});
         }
         
