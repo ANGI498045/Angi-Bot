@@ -23,12 +23,7 @@ module.exports = {
         try {
 	        const newCommand = require(`./${command.data.name}.js`);
 	        interaction.client.commands.set(newCommand.data.name, newCommand);
-            const channel = interaction.guild.channels.cache.get(channelLogs);
-            const embed1 = new EmbedBuilder()
-                .setTitle("Commande")
-                .setDescription("La commande \`reload\` a été utilisée")
 	        await interaction.channel.send({content: `La commande \`${newCommand.data.name}\` a été actualisée !`, ephemeral: true});
-            await channel.send({embeds: [embed1]});
         } catch (error) {
 	        console.error(error);
             const channel = interaction.guild.channels.cache.get(channelLogs);

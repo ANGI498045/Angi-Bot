@@ -80,6 +80,13 @@ client.on(Events.InteractionCreate, async interaction => {
 
     try {
         await command.execute(interaction);
+        const embedC = new EmbedBuilder()
+            .setTitle("Commande")
+            .setDescription(`La commande \`${interaction.commandName}\` a été utilisée.`)
+            .setColor(0x0099ff)
+            .setTimestamp();
+        const channel = client.channels.cache.get(channelLogs);
+        channel.send({embeds: [embedC]});
     } catch (error) {
         console.error(error);
         if (interaction.replied || interaction.deferred) {

@@ -1,9 +1,4 @@
-const {  SlashCommandBuilder, PermissionFlagsBits, Client, EmbedBuilder, GatewayIntentBits } = require("discord.js");
-/*const client = new Client({ intents:
-    [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
-});
-const {channelLogs} = require("../../config.json");
-const channel = client.channels.cache.get(channelLogs); */
+const {  SlashCommandBuilder, PermissionFlagsBits,EmbedBuilder } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -33,7 +28,6 @@ module.exports = {
                 await interaction.channel.send({embeds: [embed]});
             } catch (error) {
                 console.error(error)
-                //await channel.send('Erreur avec la commande: "kick"');
             }
         },
 };
