@@ -1,10 +1,10 @@
 const { EmbedBuilder } = require("@discordjs/builders");
 const { SlashCommandBuilder, PermissionFlagsBits, Client, GatewayIntentBits } = require("discord.js");
-const client = new Client({ intents:
+/*const client = new Client({ intents:
     [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
 });
 const {channelLogs} = require("../../config.json");
-const channel = client.channels.cache.get(channelLogs)
+const channel = client.channels.cache.get(channelLogs) */
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -25,7 +25,7 @@ module.exports = {
             interaction.channel.send({ embeds: [embed] });
         } catch (error) {
             await console.error(error);
-            await channel.send('Erreur avec la commande: "arrival"');
+            //await channel.send('Erreur avec la commande: "arrival"');
         }
     },
 };

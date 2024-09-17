@@ -18,7 +18,7 @@ client.on(Events.GuildMemberAdd, async (member) => {
         .setColor(0x0099ff)
         .setTimestamp()
     const channel = client.channels.cache.get("1209468207295897711");
-    const channelL = client.channels.cache.get(channelLogs);
+    //const channelL = client.channels.cache.get(channelLogs);
     const roleView = "1209450123189559307";
     const roleBot = "1273621232759341057";
     if (!member.user.bot) {
@@ -27,7 +27,7 @@ client.on(Events.GuildMemberAdd, async (member) => {
        member.roles.add(roleView);
         } catch (error) {
             console.error(error)
-            await channelL.send("Erreur avec l'arrivée d'un membre.")
+            //await channelL.send("Erreur avec l'arrivée d'un membre.")
         }
        }
     if (member.user.bot) member.roles.add(roleBot);
@@ -44,8 +44,8 @@ client.on(Events.GuildMemberRemove, async (member) => {
             channel.send({ embeds: [embed] });
     } catch (error) {
         console.error(error)
-        const channel = client.channels.cache.get(channelLogs);
-        channel.send("Erreur avec le départ d'un membre");
+        /*const channel = client.channels.cache.get(channelLogs);
+        channel.send("Erreur avec le départ d'un membre");*/
     }
 }
 });

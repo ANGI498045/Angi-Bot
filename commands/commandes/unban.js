@@ -1,8 +1,8 @@
 const { SlashCommandBuilder, PermissionFlagsBits, Client, GatewayIntentBits } = require("discord.js");
-const client = new Client({ intents:
+/*const client = new Client({ intents:
     [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
 });
-const { ChannelLogs } = require("../../config.json")
+const { ChannelLogs } = require("../../config.json")*/
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -22,8 +22,8 @@ module.exports = {
             await interaction.reply("Membre débannit !")
         } catch (error) {
             console.error(error);
-            const channel = client.channels.cache.get(ChannelLogs);
-            channel.send('Erreur avec la commande: "unban"');
+            //const channel = client.channels.cache.get(ChannelLogs);
+            //channel.send('Erreur avec la commande: "unban"');
         }
     },
 };
