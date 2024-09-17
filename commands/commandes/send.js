@@ -12,16 +12,17 @@ module.exports = {
     ),
     async execute(interaction) {
         const msg = interaction.options.getString("message");
-        const embed = new EmbedBuilder()
-            .setTitle(msg)
-            .setColor(0x0099ff)
+        
         try {
+            const embed = new EmbedBuilder()
+            .setTitle(msg)
+            .setColor(0x0099ff);
             await interaction.reply({ embeds: [embed] });
             const embed3 = new EmbedBuilder()
                 .setTitle("Commande")
                 .setDescription("La commande \`send\` a été utilisée.")
                 .setColor(0x0099ff)
-                .setTimestamp()
+                .setTimestamp();
             const channel = interaction.guild.channels.cache.get(channelLogs);
             await channel.send({embeds: [embed3]});
         } catch (error) {
