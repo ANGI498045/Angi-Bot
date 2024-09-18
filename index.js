@@ -92,7 +92,14 @@ client.on(Events.InteractionCreate, async interaction => {
         if (interaction.replied || interaction.deferred) {
             await interaction.followUp({content: "Erreur avec la commande.", ephemeral: true});
         } else {
-            await interaction.reply({ content: "Erreur avec la commande.", ephemeral: true});
+            await interaction.reply({content: "Erreur avec la commande.", ephemeral: true});
+            const embedErr = new EmbedBuilder()
+                .setTitle("Erreur")
+                .setDescription(`Erreur avec la commande \`${interaction.commandName}\`.`)
+                .setTimestamp()
+                .setColor(0xC11919);
+            const channel = client.channels.cache.get(channelLogs);
+            channel.send({embeds: [embedErr]});
         }
     }
 });

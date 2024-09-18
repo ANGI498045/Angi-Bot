@@ -7,8 +7,7 @@ module.exports = {
         try {
             await interaction.reply("Je suis bien connecté !")
         } catch (error) {
-            console.error(error)
-            interaction.channel.send('Erreur avec la commande "online"');
+            console.error(error);
         }
     },
 }
