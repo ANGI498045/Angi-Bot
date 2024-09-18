@@ -16,7 +16,7 @@ module.exports = {
             const embed = new EmbedBuilder()
             .setTitle(msg)
             .setColor(0x0099ff);
-            await interaction.reply({ embeds: [embed] });
+            await interaction.channel.send({ embeds: [embed] });
         } catch (error) {
             console.error(error)
             const embed3 = new EmbedBuilder()
