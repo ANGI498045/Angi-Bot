@@ -87,6 +87,7 @@ client.on(Events.InteractionCreate, async interaction => {
             .setTimestamp();
         const channel = client.channels.cache.get(channelLogs);
         channel.send({embeds: [embedC]});
+        console.log(interaction.commandName)
     } catch (error) {
         console.error(error);
         if (interaction.replied || interaction.deferred) {
