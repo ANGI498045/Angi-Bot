@@ -22,14 +22,11 @@ client.on(Events.GuildMemberAdd, async (member) => {
     const roleView = "1209450123189559307";
     const roleBot = "1273621232759341057";
     if (!member.user.bot) {
-        try {
-            channel.send({ embeds: [embed] }); 
-       member.roles.add(roleView);
-        } catch (error) {
-            console.error(error)
-            await channelL.send("Erreur avec l'arrivée d'un membre.")
+        member.roles.add(roleView);
+    if (!member.user.tag === "testangi498045") {
+        channel.send({ embeds: [embed] }); 
+    }
         }
-       }
     if (member.user.bot) member.roles.add(roleBot);
 });
 
@@ -40,12 +37,8 @@ client.on(Events.GuildMemberRemove, async (member) => {
         .setTimestamp()
     const channel = client.channels.cache.get("1209468207295897711");
     if (!member.user.bot) {
-        try {
-            channel.send({ embeds: [embed] });
-    } catch (error) {
-        console.error(error)
-        const channel = client.channels.cache.get(channelLogs);
-        channel.send("Erreur avec le départ d'un membre");
+    if (!member.user.tag === "testangi498045") {
+        channel.send({ embeds: [embed] });
     }
 }
 });
@@ -90,18 +83,18 @@ client.on(Events.InteractionCreate, async interaction => {
         console.log(interaction.commandName)
     } catch (error) {
         console.error(error);
-        if (interaction.replied || interaction.deferred) {
-            await interaction.followUp({content: "Erreur avec la commande.", ephemeral: true});
-        } else {
-            await interaction.reply({content: "Erreur avec la commande.", ephemeral: true});
-            const embedErr = new EmbedBuilder()
+        const embedErr = new EmbedBuilder()
                 .setTitle("Erreur")
                 .setDescription(`Erreur avec la commande \`${interaction.commandName}\`.`)
                 .setTimestamp()
                 .setColor(0xC11919);
             const channel = client.channels.cache.get(channelLogs);
             channel.send({embeds: [embedErr]});
-        }
+    }
+        if (interaction.replied || interaction.deferred) {
+            await interaction.followUp({content: "Erreur avec la commande.", ephemeral: true});
+        } else {
+            await interaction.reply({content: "Erreur avec la commande.", ephemeral: true});
     }
 });
 

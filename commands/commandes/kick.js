@@ -1,4 +1,5 @@
 const {  SlashCommandBuilder, PermissionFlagsBits,EmbedBuilder } = require("discord.js");
+const channelLogs = require("../../config.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -25,7 +26,8 @@ module.exports = {
                     .setTitle("Expulsion")
                     .addFields({title: `Le membre ${user.username} a été expulsé.`, value: `Raison: ${reason}`})
                     .setTimestamp()
-                await interaction.channel.send({embeds: [embed]});
+                const channel = interaction.guild.channels.cache.get(channelLogs)
+                await channel.send({embeds: [embed]});
             } catch (error) {
                 console.error(error)
             }

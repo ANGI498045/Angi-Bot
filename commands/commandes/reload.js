@@ -23,7 +23,7 @@ module.exports = {
         try {
 	        const newCommand = require(`./${command.data.name}.js`);
 	        interaction.client.commands.set(newCommand.data.name, newCommand);
-	        await interaction.channel.send({content: `La commande \`${newCommand.data.name}\` a été actualisée !`, ephemeral: true});
+	        await interaction.reply({content: `La commande \`${newCommand.data.name}\` a été actualisée !`, ephemeral: true});
         } catch (error) {
 	        console.error(error);
             const channel = interaction.guild.channels.cache.get(channelLogs);
