@@ -20,11 +20,11 @@ module.exports = {
             const user = interaction.options.getUser("membre");
             const reason = interaction.options.getString("raison") || "Aucune raison précisée";
             try {
-                const member = await interaction.guild.members.fetch(user.id);
-                await member.kick(reason);
+                //const member = await interaction.guild.members.fetch(user.id);
+                //await member.kick(reason);
                 const embed = new EmbedBuilder()
                     .setTitle("Expulsion")
-                    .addFields({title: `Le membre ${user.username} a été expulsé.`, value: `Raison: ${reason}`})
+                    .setDescription("Membre expuslé")
                     .setTimestamp()
                 const channel = interaction.guild.channels.cache.get(channelLogs)
                 await channel.send({embeds: [embed]});

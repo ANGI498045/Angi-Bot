@@ -90,11 +90,7 @@ client.on(Events.InteractionCreate, async interaction => {
                 .setColor(0xC11919);
             const channel = client.channels.cache.get(channelLogs);
             channel.send({embeds: [embedErr]});
-    }
-        if (interaction.replied || interaction.deferred) {
-            await interaction.followUp({content: "Erreur avec la commande.", ephemeral: true});
-        } else {
-            await interaction.reply({content: "Erreur avec la commande.", ephemeral: true});
+        interaction.reply({content: "Erreur avec la commande.", ephemeral: true});
     }
 });
 
