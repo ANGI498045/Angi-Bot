@@ -66,6 +66,7 @@ client.on(Events.InteractionCreate, async interaction => {
     if(!interaction.isChatInputCommand()) return;
 
     const command = interaction.client.commands.get(interaction.commandName);
+    const channel = client.channels.cache.get(channelLogs);
     if (!command) {
         console.error({content: `La commande ${interaction.commandName} n'existe pas.`, ephemeral: true});
         return;
@@ -78,7 +79,6 @@ client.on(Events.InteractionCreate, async interaction => {
             .setDescription(`La commande \`${interaction.commandName}\` a été utilisée.`)
             .setColor(0x0099ff)
             .setTimestamp();
-        const channel = client.channels.cache.get(channelLogs);
         channel.send({embeds: [embedC]});
         console.log(interaction.commandName)
     } catch (error) {
@@ -89,7 +89,6 @@ client.on(Events.InteractionCreate, async interaction => {
                 .setDescription(`Erreur avec la commande \`${interaction.commandName}\`.`)
                 .setTimestamp()
                 .setColor(0xC11919);
-        const channel = client.channels.cache.get(channelLogs);
         channel.send({embeds: [embedErr]});
     }
 });
