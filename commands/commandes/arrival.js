@@ -19,7 +19,7 @@ module.exports = {
             .setTimestamp()
             interaction.channel.send({ embeds: [embed] });
         } catch (error) {
-            await console.error(error);
+            console.error(error);
         }
     },
 };
