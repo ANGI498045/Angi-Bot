@@ -83,14 +83,14 @@ client.on(Events.InteractionCreate, async interaction => {
         console.log(interaction.commandName)
     } catch (error) {
         console.error(error);
+        interaction.reply({content: "Erreur avec la commande.", ephemeral: true});
         const embedErr = new EmbedBuilder()
                 .setTitle("Erreur")
                 .setDescription(`Erreur avec la commande \`${interaction.commandName}\`.`)
                 .setTimestamp()
                 .setColor(0xC11919);
-            const channel = client.channels.cache.get(channelLogs);
-            channel.send({embeds: [embedErr]});
-        interaction.reply({content: "Erreur avec la commande.", ephemeral: true});
+        const channel = client.channels.cache.get(channelLogs);
+        channel.send({embeds: [embedErr]});
     }
 });
 
