@@ -5,7 +5,7 @@ module.exports = {
     .setDescription("Vérifie si le bot est online"),
     async execute(interaction) {
         try {
-            await interaction.reply("Je suis bien connecté !")
+            await interaction.reply("Je suis bien connecté !");
         } catch (error) {
             console.error(error);
         }
