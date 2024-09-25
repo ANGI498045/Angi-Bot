@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits,EmbedBuilder } = require("discord.js");
+const {channelLogs} = require("../../config.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -24,14 +25,16 @@ module.exports = {
         const member = interaction.options.getMember("membre");
         const reason = interaction.options.getString("raison") || "aucune raison précisée";
         const duration = interaction.options.getInteger("durée" * 1000) || 9_999_999_999;
+        const channel = interaction.guild.channels.cache.get(channelLogs);
 
         try {
             member.timeout(duration)
             const embed = new EmbedBuilder()
                 .setTitle("Mute")
-                .addFields({title: `Le membre ${member} a été mute pour ${duration} milisecondes.`, value: `Raison: ${reason}`})
+                .setDescription(`Le membre ${member} a été mute. Raison: ${reason}.`)
                 .setTimestamp()
-            await interaction.channel.send({embeds: [embed]});
+                .setColor(0xF68A11)
+            await channel.send({embeds: [embed]});
         } catch (error) {
             console.error(error);
         }
