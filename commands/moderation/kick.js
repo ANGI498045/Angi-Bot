@@ -29,7 +29,7 @@ module.exports = {
                     .setColor(0xF68A11)
                     .setTimestamp()
                 await channel.send({embeds: [embed]});
-                await interaction.reply({content: "Membre expulsé !", ephemeral: true});
+                await interaction.reply({content: `Membre ${user} expulsé: ${reason}.`, ephemeral: true});
             } catch (error) {
                 console.error(error)
             }

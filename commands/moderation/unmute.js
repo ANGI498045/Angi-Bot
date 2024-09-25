@@ -24,7 +24,7 @@ module.exports = {
                 .setTimestamp()
                 .setColor(0xF68A11)
             await channel.send({embeds: [embed]})
-            await interaction.reply({content: "Membre unmute !", ephemeral: true});
+            await interaction.reply({content: `Membre ${member} unmute !`, ephemeral: true});
         } catch (error) {
             console.error(error)
         }

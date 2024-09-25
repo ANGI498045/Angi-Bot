@@ -32,11 +32,11 @@ module.exports = {
             member.timeout(duration1)
             const embed = new EmbedBuilder()
                 .setTitle("Mute")
-                .setDescription(`Le membre ${member} a été mute pour ${duration} secondes. Raison: ${reason}.`)
+                .setDescription(`Le membre ${member} a été mute pour \`${duration}\` secondes. Raison: \`${reason}\`.`)
                 .setTimestamp()
                 .setColor(0xF68A11)
             await channel.send({embeds: [embed]});
-            await interaction.reply({content: "Membre rendu muet !", ephemeral: true});
+            await interaction.reply({content: `Membre ${member} rendu muet pour ${duration}s: ${reason}.`, ephemeral: true});
         } catch (error) {
             console.error(error);
         }
