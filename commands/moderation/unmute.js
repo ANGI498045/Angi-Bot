@@ -1,7 +1,7 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const { execute } = require("./mute");
 const { EmbedBuilder } = require("@discordjs/builders");
-const channelLogs = require("../../config.json");
+const {channelLogs} = require("../../config.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -14,9 +14,10 @@ module.exports = {
         ),
     async execute(interaction) {
         const member = interaction.options.getMember("membre");
-        const channel = interaction.guild.channels.cache.get(channelLogs)
+        const channel = interaction.guild.channels.cache.get(channelLogs);
+        const duration = 1;
         try {
-            member.timeout("1")
+            member.timeout(duration);
             const embed = new EmbedBuilder()
                 .setTitle("Unmute")
                 .setDescription(`Le membre ${member} a été unmute.`)
