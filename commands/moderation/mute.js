@@ -5,7 +5,7 @@ module.exports = {
     data: new SlashCommandBuilder()
     .setName("mute")
     .setDescription("Rend muet un membre")
-    .setDefaultMemberPermissions(PermissionFlagsBits.KickMembers)
+    .setDefaultMemberPermissions(PermissionFlagsBits.MuteMembers)
     .addUserOption(option =>
         option.setName("membre")
         .setDescription("Le membre à rendre muet")
