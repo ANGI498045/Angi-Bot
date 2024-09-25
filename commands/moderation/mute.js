@@ -24,11 +24,12 @@ module.exports = {
     async execute(interaction) {
         const member = interaction.options.getMember("membre");
         const reason = interaction.options.getString("raison") || "aucune raison précisée";
-        const duration = interaction.options.getInteger("durée" * 1000) || 9_999_999_999;
+        const duration = interaction.options.getInteger("durée") || 1000000;
+        const duration1 = duration * 1000;
         const channel = interaction.guild.channels.cache.get(channelLogs);
 
         try {
-            member.timeout(duration)
+            member.timeout(duration1)
             const embed = new EmbedBuilder()
                 .setTitle("Mute")
                 .setDescription(`Le membre ${member} a été mute pour ${duration} secondes. Raison: ${reason}.`)
