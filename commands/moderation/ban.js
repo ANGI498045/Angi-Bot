@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
+const {channelLogs} = require("../../config.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -16,6 +17,7 @@ module.exports = {
             .setRequired(false)
         ),
         async execute(interaction) {
+            const channel = interaction.guild.channels.cache.get(channelLogs)
             const user = interaction.options.getUser("membre");
             const reason = interaction.options.getString("raison");
 
@@ -23,8 +25,10 @@ module.exports = {
                 await interaction.guild.members.ban(user.id, { reason });
                 const embed = new EmbedBuilder()
                     .setTitle("Bannissement")
-                    .addFields({title: `Le membre ${user.username} a été banni.`, value: `Raison: ${reason}.`});
-                await interaction.channel.send({embeds: [embed]});
+                    .setDescription(`Le membre ${user} a été banni. Raison: ${reason}`)
+                    .setTimestamp()
+                    .setColor(0xF68A11)
+                await channel.send({embeds: [embed]});
             } catch (error) {
                 console.error(error);
             }

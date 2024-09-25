@@ -1,5 +1,5 @@
 const {  SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder, escapeHeading } = require("discord.js");
-const channelLogs = require("../../config.json");
+const {channelLogs} = require("../../config.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -19,7 +19,7 @@ module.exports = {
         async execute(interaction) {
             const user = interaction.options.getUser("membre");
             const reason = interaction.options.getString("raison") || "Aucune raison précisée";
-            const channel = interaction.guild.channels.cache.get("1285263139642019850")
+            const channel = interaction.guild.channels.cache.get(channelLogs)
             try {
                 const member = await interaction.guild.members.fetch(user.id);
                 await member.kick(reason);
