@@ -72,13 +72,13 @@ client.on(Events.InteractionCreate, async interaction => {
 
     try {
         await command.execute(interaction);
+        console.log(interaction.commandName)
         const embedC = new EmbedBuilder()
             .setTitle("Commande")
             .setDescription(`La commande \`${interaction.commandName}\` a été utilisée.`)
             .setColor(0x0099ff)
             .setTimestamp();
             channel.send({embeds: [embedC]});
-        console.log(interaction.commandName)
     } catch (error) {
         console.error(error);
         interaction.reply({content: "Erreur avec la commande.", ephemeral: true});
