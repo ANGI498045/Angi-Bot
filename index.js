@@ -18,7 +18,6 @@ client.on(Events.GuildMemberAdd, async (member) => {
         .setColor(0x0099ff)
         .setTimestamp()
     const channel = client.channels.cache.get("1209468207295897711");
-    const channelL = client.channels.cache.get(channelLogs);
     const roleView = "1209450123189559307";
     const roleBot = "1273621232759341057";
     if (!member.user.bot) {
