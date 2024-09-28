@@ -29,6 +29,26 @@ module.exports = {
         const channel = interaction.guild.channels.cache.get(channelLogs);
 
         try {
+            if (member.roles.cache.has("1273620377318326293")) {
+                interaction.reply({content: "Tu ne peux pas mute un modérateur !", ephemeral: true});
+                return;
+            }
+            if (member.roles.cache.has("1273620410226708603")) {
+                interaction.reply({content: "Tu ne peux pas mute un modérateur !", ephemeral: true});
+                return;
+            }
+            if (member.roles.cache.has("1209450064720957490")) {
+                interaction.reply({content: "Tu ne peux pas mute un modérateur !", ephemeral: true});
+                return;
+            }
+            if (member.roles.cache.has("1209449963071873044")) {
+                interaction.reply({content: "Tu ne peux pas mute Angi !", ephemeral: true});
+                return;
+            }
+            if (member.user.bot) {
+                interaction.reply({content: "Tu ne peux pas mute un Bot !", ephemeral: true});
+                return;
+            }
             member.timeout(duration1)
             const embed = new EmbedBuilder()
                 .setTitle("Mute")
