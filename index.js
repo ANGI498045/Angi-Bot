@@ -23,6 +23,7 @@ client.on(Events.GuildMemberAdd, async (member) => {
     const roleBot = "1273621232759341057";
     if (!member.user.bot) {
         member.roles.add(roleView);
+        if (member.user.id === "994167928989696020") {return;}
         channel.send({ embeds: [embed] }); 
         }
     if (member.user.bot) member.roles.add(roleBot);
@@ -35,6 +36,7 @@ client.on(Events.GuildMemberRemove, async (member) => {
         .setTimestamp()
     const channel = client.channels.cache.get("1209468207295897711");
     if (!member.user.bot) {
+        if (member.user.id === "994167928989696020") {return;}
         channel.send({ embeds: [embed] });
 }
 });
