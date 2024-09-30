@@ -6,7 +6,7 @@ const client = new Client({ intents:
 });
 const path = require("node:path");
 const fs = require("node:fs");
-//1285263139642019850
+
 client.on(Events.ClientReady, async readyClient => {
     console.log(`Bot ${readyClient.user.tag} online`);
     client.user.setActivity("le live d'Angi49_", {type: ActivityType.Watching});
