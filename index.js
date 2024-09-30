@@ -6,18 +6,18 @@ const client = new Client({ intents:
 });
 const path = require("node:path");
 const fs = require("node:fs");
-
+//1285263139642019850
 client.on(Events.ClientReady, async readyClient => {
     console.log(`Bot ${readyClient.user.tag} online`);
     client.user.setActivity("le live d'Angi49_", {type: ActivityType.Watching});
 });
 
 client.on(Events.GuildMemberAdd, async (member) => {
+    const channel = client.channels.cache.get("1209468207295897711");
     const embed = new EmbedBuilder()
         .addFields({name: "Nouveau Membre", value: `${member.user} a rejoint le serveur ! Bienvenue !`})
         .setColor(0x0099ff)
         .setTimestamp()
-    const channel = client.channels.cache.get("1209468207295897711");
     const roleView = "1209450123189559307";
     const roleBot = "1273621232759341057";
     if (!member.user.bot) {
