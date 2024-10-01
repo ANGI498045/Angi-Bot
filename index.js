@@ -71,6 +71,20 @@ client.on(Events.InteractionCreate, async interaction => {
 
     try {
         await command.execute(interaction);
+        if (interaction.commandName === "ban") {
+            return;   }
+        else if (interaction.commandName === "kick") {
+            return;
+        }
+        else if (interaction.commandName === "mute") {
+            return;
+        }
+        else if (interaction.commandName === "unban") {
+            return;
+        }
+        else if (interaction.commandName === "unmute") {
+            return;
+        }
         console.log(interaction.commandName)
         const embedC = new EmbedBuilder()
             .setTitle("Commande")

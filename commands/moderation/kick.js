@@ -1,4 +1,4 @@
-const {  SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder, escapeHeading } = require("discord.js");
+const {  SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
 const {channelLogs} = require("../../config.json");
 
 module.exports = {
