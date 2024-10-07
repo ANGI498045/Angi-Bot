@@ -1,5 +1,5 @@
 const { Client, GatewayIntentBits, Events, ActivityType, Collection } = require("discord.js");
-const { token, channelLogs } = require("./config.json");
+const { token, channelLogs, roleView, roleBot } = require("./config.json");
 const { EmbedBuilder } = require("@discordjs/builders"); 
 const client = new Client({ intents:
     [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
@@ -18,8 +18,6 @@ client.on(Events.GuildMemberAdd, async (member) => {
         .addFields({name: "Nouveau Membre", value: `${member.user} a rejoint le serveur ! Bienvenue !`})
         .setColor(0x0099ff)
         .setTimestamp()
-    const roleView = "1209450123189559307";
-    const roleBot = "1273621232759341057";
     if (!member.user.bot) {
         member.roles.add(roleView);
         if (member.user.id === "994167928989696020") {return;}
