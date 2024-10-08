@@ -66,6 +66,7 @@ client.on(Events.InteractionCreate, async interaction => {
         console.error({content: `La commande ${interaction.commandName} n'existe pas.`, ephemeral: true});
         return;
     }
+    console.log(interaction.commandName)
 
     try {
         await command.execute(interaction);
@@ -83,7 +84,6 @@ client.on(Events.InteractionCreate, async interaction => {
         else if (interaction.commandName === "unmute") {
             return;
         }
-        console.log(interaction.commandName)
         const embedC = new EmbedBuilder()
             .setTitle("Commande")
             .setDescription(`La commande \`${interaction.commandName}\` a été utilisée.`)
