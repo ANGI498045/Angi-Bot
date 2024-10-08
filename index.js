@@ -13,6 +13,7 @@ client.on(Events.ClientReady, async readyClient => {
 });
 
 client.on(Events.GuildMemberAdd, async (member) => {
+    console.log("New member");
     const channel = client.channels.cache.get("1209468207295897711");
     const embed = new EmbedBuilder()
         .addFields({name: "Nouveau Membre", value: `${member.user} a rejoint le serveur ! Bienvenue !`})

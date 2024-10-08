@@ -19,7 +19,8 @@ module.exports = {
         async execute(interaction) {
             const user = interaction.options.getUser("membre");
             const reason = interaction.options.getString("raison") || "Aucune raison précisée";
-            const channel = interaction.guild.channels.cache.get(channelLogs)
+            const channel = interaction.guild.channels.cache.get(channelLogs);
+            const member = await interaction.guild.members.fetch(user.id);
             try {
                 if (member.roles.cache.has("1273620377318326293")) {
                     interaction.reply({content: "Tu ne peux pas kick un modérateur !", ephemeral: true});
@@ -41,7 +42,6 @@ module.exports = {
                     interaction.reply({content: "Tu ne peux pas kick un Bot !", ephemeral: true});
                     return;
                 }
-                const member = await interaction.guild.members.fetch(user.id);
                 await member.kick(reason);
                 const embed = new EmbedBuilder()
                     .setTitle("Expulsion")

@@ -20,6 +20,7 @@ module.exports = {
             const channel = interaction.guild.channels.cache.get(channelLogs)
             const user = interaction.options.getUser("membre");
             const reason = interaction.options.getString("raison");
+            const member = await interaction.guild.members.fetch(user.id);
 
             try {
                 if (member.roles.cache.has("1273620377318326293")) {
