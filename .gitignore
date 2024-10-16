@@ -18,6 +18,26 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
+role.json
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+Expand
+message.txt
+3 KB
+﻿
+role.json
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
