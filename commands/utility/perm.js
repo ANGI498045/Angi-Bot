@@ -16,27 +16,27 @@ module.exports = {
         const member = await interaction.guild.members.fetch(user.id);
 
         if (member.roles.cache.has(roleAngi)) {
-            const Hrole = "Créateur";
+            var Hrole = "Créateur";
             return;
         }
         if (member.roles.cache.has(roleAdmin)) {
-            const Hrole = "Administrateur";
+            var Hrole = "Administrateur";
             return;
         }
         if (member.roles.cache.has(roleMod)) {
-            const Hrole = "Modérateur";
+            var Hrole = "Modérateur";
             return;
         }
         if (member.roles.cache.has(roleModTest)) {
-            const Hrole = "Modérateur-Test";
+            var Hrole = "Modérateur-Test";
             return;
         }
         if (member.roles.cache.has(roleBot)) {
-            const Hrole = "Bot";
+            var Hrole = "Bot";
             return;
         }
         if (member.roles.cache.has(roleView)) {
-            const Hrole = "Membre";
+            var Hrole = "Membre";
         }
 
         const embed = new EmbedBuilder()
