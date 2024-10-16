@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, Embed, EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const { roleAdmin, roleMod, roleModTest, roleAngi, roleBot, roleView } = require("../../role.json")
 
 module.exports = {
@@ -8,12 +8,13 @@ module.exports = {
         .addUserOption(option =>
             option.setName("membre")
             .setDescription("Le membre dont tu souhaite vérifier les permissions")
+            .setRequired(true)
         ),
 
     async execute(interaction) {
         const user = interaction.options.getUser("membre");
         const member = await interaction.guild.members.fetch(user.id);
-        
+
         if (member.roles.cache.has(roleAngi)) {
             var Hrole = "Créateur";
             return;
