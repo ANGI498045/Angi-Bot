@@ -1,3 +1,11 @@
+{
+    "roleView": "1209450123189559307",
+    "roleBot": "1273621232759341057",
+    "roleAdmin": "1209450064720957490",
+    "roleModTest": "1273620410226708603",
+    "roleMod": "1273620377318326293",
+    "roleAngi": "1209449963071873044"
+}
 const { Client, GatewayIntentBits, Events, ActivityType, Collection } = require("discord.js");
 const { token, channelLogs } = require("./config.json");
 const { roleBot, roleView } = require("./role.json")
