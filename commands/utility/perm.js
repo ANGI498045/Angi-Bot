@@ -1,10 +1,11 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
 const { roleAdmin, roleMod, roleModTest, roleAngi, roleBot, roleView } = require("../../role.json")
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("perm")
         .setDescription("Te donne les permissions d'un membre")
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addUserOption(option =>
             option.setName("membre")
             .setDescription("Le membre dont tu souhaite vérifier les permissions")
