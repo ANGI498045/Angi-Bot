@@ -1,5 +1,6 @@
 const { Client, GatewayIntentBits, Events, ActivityType, Collection } = require("discord.js");
-const { token, channelLogs, roleView, roleBot } = require("./config.json");
+const { token, channelLogs } = require("./config.json");
+const { roleBot, roleView } = require("./role.json")
 const { EmbedBuilder } = require("@discordjs/builders"); 
 const client = new Client({ intents:
     [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
