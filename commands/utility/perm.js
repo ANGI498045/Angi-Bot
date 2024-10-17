@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
-const { roleAdmin, roleMod, roleModTest, roleAngi, roleBot, roleView } = require("../../role.json")
+const { roleAdmin, roleMod, roleModTest, roleAngi, roleBot, roleView } = require("../../json/role.json")
 
 module.exports = {
     data: new SlashCommandBuilder()

@@ -1,7 +1,6 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
-const { execute } = require("./mute");
 const { EmbedBuilder } = require("@discordjs/builders");
-const {channelLogs} = require("../../config.json");
+const {channelLogs} = require("../../json/channels.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
