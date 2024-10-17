@@ -1,7 +1,7 @@
 const { Client, GatewayIntentBits, Events, ActivityType, Collection } = require("discord.js");
 const { token } = require("./json/config.json");
 const {roleView, roleBot} = require("./json/role.json");
-const {channelPlane} = require("./json/channels.json")
+const {channelPlane, channelLogs} = require("./json/channels.json")
 const { EmbedBuilder } = require("@discordjs/builders");
 const client = new Client({ intents:
     [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
@@ -20,9 +20,10 @@ client.on(Events.GuildMemberAdd, async (member) => {
         .setColor(0x0099ff)
         .setTimestamp()
     if (!member.user.bot) {
+        if (member.user.id === "994167928989696020") {return;}
         const channel = client.channels.cache.get(channelPlane);
-       channel.send({ embeds: [embed] }); 
-       member.roles.add(roleView);
+        channel.send({ embeds: [embed] }); 
+        member.roles.add(roleView);
     }
     if (member.user.bot) member.roles.add(roleBot);
 });
@@ -59,20 +60,44 @@ client.on(Events.InteractionCreate, async interaction => {
     if(!interaction.isChatInputCommand()) return;
 
     const command = interaction.client.commands.get(interaction.commandName);
+    const channel = client.channels.cache.get(channelLogs);
     if (!command) {
         console.error({content: `La commande ${interaction.commandName} n'existe pas.`, ephemeral: true});
         return;
     }
+    console.log(interaction.commandName)
 
     try {
         await command.execute(interaction);
+        if (interaction.commandName === "ban") {
+            return;   }
+        else if (interaction.commandName === "kick") {
+            return;
+        }
+        else if (interaction.commandName === "mute") {
+            return;
+        }
+        else if (interaction.commandName === "unban") {
+            return;
+        }
+        else if (interaction.commandName === "unmute") {
+            return;
+        }
+        const embedC = new EmbedBuilder()
+            .setTitle("Commande")
+            .setDescription(`La commande \`${interaction.commandName}\` a été utilisée.`)
+            .setColor(0x0099ff)
+            .setTimestamp();
+            channel.send({embeds: [embedC]});
     } catch (error) {
         console.error(error);
-        if (interaction.replied || interaction.deferred) {
-            await interaction.followUp({content: "Erreur avec la commande.", ephemeral: true});
-        } else {
-            await interaction.reply({ content: "Erreur avec la commande.", ephemeral: true});
-        }
+        interaction.reply({content: "Erreur avec la commande.", ephemeral: true});
+        const embedErr = new EmbedBuilder()
+                .setTitle("Erreur")
+                .setDescription(`Erreur avec la commande \`${interaction.commandName}\`.`)
+                .setTimestamp()
+                .setColor(0xC11919);
+        channel.send({embeds: [embedErr]});
     }
 });
 
