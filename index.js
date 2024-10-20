@@ -20,10 +20,10 @@ client.on(Events.GuildMemberAdd, async (member) => {
         .setColor(0x0099ff)
         .setTimestamp()
     if (!member.user.bot) {
+        member.roles.add(roleView);
         if (member.user.id === "994167928989696020") {return;}
         const channel = client.channels.cache.get(channelPlane);
         channel.send({ embeds: [embed] }); 
-        member.roles.add(roleView);
     }
     if (member.user.bot) member.roles.add(roleBot);
 });
