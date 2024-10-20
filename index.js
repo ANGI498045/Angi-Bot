@@ -88,10 +88,10 @@ client.on(Events.InteractionCreate, async interaction => {
             .setDescription(`La commande \`${interaction.commandName}\` a été utilisée.`)
             .setColor(0x0099ff)
             .setTimestamp();
-            channel.send({embeds: [embedC]});
+        channel.send({embeds: [embedC]});
     } catch (error) {
         console.error(error);
-        interaction.reply({content: "Erreur avec la commande.", ephemeral: true});
+        interaction.reply({content: `Erreur avec la commande: ${interaction.commandName}`, ephemeral: true});
         const embedErr = new EmbedBuilder()
                 .setTitle("Erreur")
                 .setDescription(`Erreur avec la commande \`${interaction.commandName}\`.`)

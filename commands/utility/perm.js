@@ -18,36 +18,31 @@ module.exports = {
 
         if (member.roles.cache.has(roleAngi)) {
             var Hrole = "Créateur";
-            return;
         }
-        if (member.roles.cache.has(roleAdmin)) {
+        else if (member.roles.cache.has(roleAdmin)) {
             var Hrole = "Administrateur";
-            return;
         }
-        if (member.roles.cache.has(roleMod)) {
+        else if (member.roles.cache.has(roleMod)) {
             var Hrole = "Modérateur";
-            return;
         }
-        if (member.roles.cache.has(roleModTest)) {
+        else if (member.roles.cache.has(roleModTest)) {
             var Hrole = "Modérateur-Test";
-            return;
         }
-        if (member.roles.cache.has(roleBot)) {
+        else if (member.roles.cache.has(roleBot)) {
             var Hrole = "Bot";
-            return;
         }
-        if (member.roles.cache.has(roleView)) {
+        else if (member.roles.cache.has(roleView)) {
             var Hrole = "Membre";
         }
 
         const embed = new EmbedBuilder()
-            .setTitle("Roles")
-            .addFields({title: member, value: `Le plus haut rôle du membre est: \`${Hrole}\`.`})
+            .setTitle("Rôles")
+            .setDescription(`Le rôle le plus élevé de ${member} est: \`${Hrole}\``)
             .setColor(0x0099ff)
             .setTimestamp()
 
         try {
-            await interaction.reply({embeds: [embed]})
+            await interaction.reply({embeds: [embed]});
         } catch (error) {
             console.error(error)
             await interaction.reply({content: "Erreur en affichant le rôle du membre", ephemeral: true});
