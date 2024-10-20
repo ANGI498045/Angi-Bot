@@ -1,5 +1,4 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const {channelLogs} = require("../../config.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -19,13 +18,6 @@ module.exports = {
             await interaction.reply({ embeds: [embed] });
         } catch (error) {
             console.error(error)
-            const embed3 = new EmbedBuilder()
-                .setTitle("Erreur")
-                .setColor(0xC11919)
-                .setDescription("Erreur avec la commande: \`send\`")
-                .setTimestamp()
-            const channel = interaction.guild.channels.cache.get(channelLogs);
-            await channel.send({embeds: [embed3]});
         }
         
     },
