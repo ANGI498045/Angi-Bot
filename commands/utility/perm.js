@@ -45,7 +45,6 @@ module.exports = {
             await interaction.reply({embeds: [embed]});
         } catch (error) {
             console.error(error)
-            await interaction.reply({content: "Erreur en affichant le rôle du membre", ephemeral: true});
         }
     }
 }
