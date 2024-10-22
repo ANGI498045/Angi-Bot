@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const { roleAdmin, roleMod, roleModTest, roleAngi, roleBot, roleView, roleNDC } = require("../../json/role.json")
 
 module.exports = {
