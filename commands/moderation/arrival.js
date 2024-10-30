@@ -17,7 +17,7 @@ module.exports = {
             .addFields({name: "Nouveau Membre", value: `${user} a rejoint le serveur ! Bienvenue !`})
             .setColor(0x0099ff)
             .setTimestamp()
-            interaction.channel.send({ embeds: [embed] });
+            await interaction.channel.send("test");
         } catch (error) {
             console.error(error);
         }
