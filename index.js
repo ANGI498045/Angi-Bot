@@ -11,7 +11,7 @@ const fs = require("node:fs");
 
 client.on(Events.ClientReady, async readyClient => {
     console.log(`Bot ${readyClient.user.tag} online`)
-    client.user.setActivity("les membres de la Galette", {type: ActivityType.Watching});
+    client.user.setActivity({type: ActivityType.Custom, name: "status", state: "Veille sur les membres de la Galette"});
 });
 
 client.on(Events.GuildMemberAdd, async (member) => {
