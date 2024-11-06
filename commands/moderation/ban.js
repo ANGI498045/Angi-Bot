@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
 const {channelLogs} = require("../../json/channels.json");
+const {clientId} = require("../../json/config.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -31,8 +32,8 @@ module.exports = {
                     interaction.reply({content: "Tu ne peux pas ban Angi !", ephemeral: true});
                     return;
                 }
-                if (member.user.bot) {
-                    interaction.reply({content: "Tu ne peux pas ban un Bot !", ephemeral: true});
+                if (member.user.id === clientId) {
+                    interaction.reply({content: "Tu ne peux pas me ban !", ephemeral: true});
                     return;
                 }
                 await interaction.guild.members.ban(user.id, { reason });
