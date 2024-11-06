@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits, Events, ActivityType, Collection } = require("discord.js");
+const { Client, GatewayIntentBits, Events, ActivityType, Collection, ReactionUserManager } = require("discord.js");
 const { token } = require("./json/config.json");
 const { roleView, roleBot } = require("./json/role.json");
 const { channelPlane, channelLogs, channelRole } = require("./json/channels.json")
@@ -35,6 +35,7 @@ client.on(Events.GuildMemberRemove, async (member) => {
         .setColor(0x0099ff)
         .setTimestamp()
     const channel = client.channels.cache.get(channelPlane);
+    if (member.user.bot) return;
     channel.send({ embeds: [embed] });
 });
 
