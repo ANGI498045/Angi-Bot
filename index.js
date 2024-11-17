@@ -1,11 +1,12 @@
-const { Client, GatewayIntentBits, Events, ActivityType, Collection, ReactionUserManager } = require("discord.js");
+const { Client, GatewayIntentBits, Events, ActivityType, Collection } = require("discord.js");
 const { token } = require("./json/config.json");
 const { roleView, roleBot } = require("./json/role.json");
 const { channelPlane, channelLogs, channelRole } = require("./json/channels.json")
 const { EmbedBuilder } = require("@discordjs/builders");
 const { EmojiDiamant } = require("./json/emoji.json");
-const client = new Client({ intents:
-    [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers]
+const client = new Client({ 
+    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions],
+    partials: ["MESSAGE", "CHANNEL", "REACTION"]
 });
 const path = require("node:path");
 const fs = require("node:fs");
@@ -104,11 +105,10 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 //réaction + (roleréaction)
-client.on("messageReactionAdd", async (reaction, user, channelRole) => {
-    //if (user.bot||!reaction.message.id === "1209830591466573837") return;
-    if (reaction.emoji.id === EmojiDiamant) {
-        reaction.message.guild.members.cache.get(user.id).roles.add(EmojiDiamant);
+client.on("messageReactionAdd", async (reaction, user) => {
+    if (reaction.emoji.name === "diamant") {
         console.log("Emoji diamant");
+        reaction.message.guild.members.cache.get(user.id).roles.add("1209609098610343986")
     }
 });
 
