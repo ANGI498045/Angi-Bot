@@ -1,7 +1,7 @@
 const { Client, GatewayIntentBits, Events, ActivityType, Collection } = require("discord.js");
 const { token } = require("./json/config.json");
 const { roleView, roleBot } = require("./json/role.json");
-const { channelPlane, channelLogs, channelRole } = require("./json/channels.json")
+const { channelPlane, channelLogs, channelRole, channelGen } = require("./json/channels.json")
 const { EmbedBuilder } = require("@discordjs/builders");
 const { EmojiDiamant } = require("./json/emoji.json");
 const client = new Client({ 
@@ -14,18 +14,31 @@ const fs = require("node:fs");
 client.on(Events.ClientReady, async readyClient => {
     console.log(`Bot ${readyClient.user.tag} online`)
     client.user.setActivity({type: ActivityType.Custom, name: "status", state: "Veille sur les membres de la Galette"});
+    const channel = client.channels.cache.get(channelRole);
+    const embed = new EmbedBuilder()
+        .setTitle("Choisis tes jeux !")
+        .addFields({name: "Valorant:", value: "<:valorant:1308839535068577792>"})
+        .addFields({name: "Counter-Strike:", value: "<:cs2:1308839633206902854>"})
+        .addFields({name: "GTA:", value: "<:gta:1308839855601619024>"})
+        .setColor(0x0099ff)
+    channel.send({embeds: [embed]})
 });
 
 client.on(Events.GuildMemberAdd, async (member) => {
     const embed = new EmbedBuilder()
-        .addFields({name: "Nouveau Membre", value: `${member.user.tag} a rejoint le serveur ! Bienvenue !`})
+        .addFields({name: "Nouveau Membre", value: `${member.user} a rejoint le serveur ! Bienvenue !`})
         .setColor(0x0099ff)
         .setTimestamp()
     if (!member.user.bot) {
         member.roles.add(roleView);
-        if (member.user.id === "994167928989696020") {return;}
-        const channel = client.channels.cache.get(channelPlane);
-        channel.send({ embeds: [embed] }); 
+        if (!member.user.id === "994167928989696020") {
+            const channel = client.channels.cache.get(channelPlane);
+            channel.send({ embeds: [embed] });
+        }
+        if (!member.user.id === "994167928989696020") {
+            const channel = client.channels.cache.get(channelGen);
+            channel.send(`Souhaitez tous la bienvenue à ${member.user} !`)
+        }
     }
     if (member.user.bot) member.roles.add(roleBot);
 });
@@ -106,9 +119,8 @@ client.on(Events.InteractionCreate, async interaction => {
 
 //réaction + (roleréaction)
 client.on("messageReactionAdd", async (reaction, user) => {
-    if (reaction.emoji.name === "diamant") {
-        console.log("Emoji diamant");
-        reaction.message.guild.members.cache.get(user.id).roles.add("1209609098610343986")
+    if (reaction.emoji.name === "gta") {
+        reaction.message.guild.members.cache.get(user.id).roles.add("1308845315754819614")
     }
 });
 
