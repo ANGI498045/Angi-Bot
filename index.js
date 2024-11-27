@@ -41,6 +41,7 @@ client.on(Events.GuildMemberAdd, async (member) => {
         }
     }
     if (member.user.bot) member.roles.add(roleBot);
+    console.log("member +")
 });
 
 client.on(Events.GuildMemberRemove, async (member) => {
@@ -51,6 +52,7 @@ client.on(Events.GuildMemberRemove, async (member) => {
     const channel = client.channels.cache.get(channelPlane);
     if (member.user.bot) return;
     channel.send({ embeds: [embed] });
+    console.log("member -")
 });
 
 client.commands = new Collection();
