@@ -119,9 +119,12 @@ client.on(Events.InteractionCreate, async interaction => {
 
 //réaction + (roleréaction)
 client.on("messageReactionAdd", async (reaction, user) => {
-    if (reaction.emoji.name === "gta") {
-        reaction.message.guild.members.cache.get(user.id).roles.add("1308845315754819614")
-    }
+    if (!message.author.bot) return;
+    if (reaction.emoji.name === "gta") reaction.message.guild.members.cache.get(user.id).roles.add("1308845315754819614");
+    if (reaction.emoji.name === "cs2") reaction.message.guild.members.cache.get(user.id).roles.add("1306275219219939408");
+    if (reaction.emoji.name === "ftn") reaction.message.guild.members.cache.get(user.id).roles.add("1306275421045653576");
+    if (reaction.emoji.name === "mc") reaction.message.guild.members.cache.get(user.id).roles.add("1308846500348170400");
+    if (reaction.emoji.name === "valorant") reaction.message.guild.members.cache.get(user.id).roles.add("1306275427374858260");
 });
 
 client.login(token)
