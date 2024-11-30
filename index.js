@@ -3,7 +3,6 @@ const { token } = require("./json/config.json");
 const { roleView, roleBot } = require("./json/role.json");
 const { channelPlane, channelLogs, channelRole, channelGen } = require("./json/channels.json")
 const { EmbedBuilder } = require("@discordjs/builders");
-const { EmojiDiamant } = require("./json/emoji.json");
 const client = new Client({ 
     intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildMessages, GatewayIntentBits.GuildMessageReactions],
     partials: ["MESSAGE", "CHANNEL", "REACTION"]
@@ -20,6 +19,7 @@ client.on(Events.ClientReady, async readyClient => {
         .addFields({name: "Valorant:", value: "<:valorant:1308839535068577792>"})
         .addFields({name: "Counter-Strike:", value: "<:cs2:1308839633206902854>"})
         .addFields({name: "GTA:", value: "<:gta:1308839855601619024>"})
+        .addFields({name: "Minecraft:", value: "<:mc:1308839939277979689>"})
         .setColor(0x0099ff)
     channel.send({embeds: [embed]})
 });
@@ -120,7 +120,7 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 //réaction + (roleréaction)
-client.on("messageReactionAdd", async (reaction, user) => {
+client.on("messageReactionAdd", async (reaction, user, message) => {
     if (!message.author.bot) return;
     if (reaction.emoji.name === "gta") reaction.message.guild.members.cache.get(user.id).roles.add("1308845315754819614");
     if (reaction.emoji.name === "cs2") reaction.message.guild.members.cache.get(user.id).roles.add("1306275219219939408");
