@@ -34,10 +34,8 @@ client.on(Events.GuildMemberAdd, async (member) => {
         if (!member.user.id === "994167928989696020") {
             const channel = client.channels.cache.get(channelPlane);
             channel.send({ embeds: [embed] });
-        }
-        if (!member.user.id === "994167928989696020") {
-            const channel = client.channels.cache.get(channelGen);
-            channel.send(`Souhaitez tous la bienvenue à ${member.user} !`)
+            const channel2 = client.channels.cache.get(channelGen);
+            channel2.send(`Souhaitez tous la bienvenue à ${member.user} !`)
         }
     }
     if (member.user.bot) member.roles.add(roleBot);
