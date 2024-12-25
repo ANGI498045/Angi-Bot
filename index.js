@@ -13,15 +13,6 @@ const fs = require("node:fs");
 client.on(Events.ClientReady, async readyClient => {
     console.log(`Bot ${readyClient.user.tag} online`)
     client.user.setActivity({type: ActivityType.Custom, name: "status", state: "Veille sur les membres de la Galette"});
-    const channel = client.channels.cache.get(channelRole);
-    const embed = new EmbedBuilder()
-        .setTitle("Choisis tes jeux !")
-        .addFields({name: "Valorant:", value: "<:valorant:1308839535068577792>"})
-        .addFields({name: "Counter-Strike:", value: "<:cs2:1308839633206902854>"})
-        .addFields({name: "GTA:", value: "<:gta:1308839855601619024>"})
-        .addFields({name: "Minecraft:", value: "<:mc:1308839939277979689>"})
-        .setColor(0x0099ff)
-    channel.send({embeds: [embed]})
 });
 
 client.on(Events.GuildMemberAdd, async (member) => {
@@ -31,12 +22,11 @@ client.on(Events.GuildMemberAdd, async (member) => {
         .setTimestamp()
     if (!member.user.bot) {
         member.roles.add(roleView);
-        if (!member.user.id === "994167928989696020") {
-            const channel = client.channels.cache.get(channelPlane);
-            channel.send({ embeds: [embed] });
-            const channel2 = client.channels.cache.get(channelGen);
-            channel2.send(`Souhaitez tous la bienvenue à ${member.user} !`)
-        }
+        if (member.user.id === "994167928989696020") return;
+        const channel = client.channels.cache.get(channelPlane);
+        channel.send({embeds: [embed]});
+        const channel2 = client.channels.cache.get(channelGen);
+        channel2.send(`Bienvenue à ${member} !`);
     }
     if (member.user.bot) member.roles.add(roleBot);
     console.log("member +")
