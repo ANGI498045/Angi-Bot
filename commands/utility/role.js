@@ -1,14 +1,11 @@
-const { SlashCommandBuilder, EmbedBuilder, PermissionFlagsBits } = require("discord.js");
-const channelRole = require("../../json/channels.json");
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("role")
-        .setDescription("T'envoie le message auquel réagir pour obtenir ton rôle")
-        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator),
+        .setDescription("T'envoie le message auquel réagir pour obtenir ton rôle"),
 
     async execute(interaction) {
-        const channel = interaction.guild.channels.cache.get(channelRole);
         const embed = new EmbedBuilder()
             .setTitle("Choisis tes jeux !")
             .addFields({name: "Valorant:", value: "<:valorant:1308839535068577792>"})
@@ -16,6 +13,6 @@ module.exports = {
             .addFields({name: "GTA:", value: "<:gta:1308839855601619024>"})
             .addFields({name: "Minecraft:", value: "<:mc:1308839939277979689>"})
             .setColor(0x0099ff)
-        channel.send({embeds: [embed]});
+        interaction.reply({embeds: [embed]});
     }
 }
