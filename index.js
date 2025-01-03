@@ -26,7 +26,7 @@ client.on(Events.GuildMemberAdd, async (member) => {
         const channel = client.channels.cache.get(channelPlane);
         channel.send({embeds: [embed]});
         const channel2 = client.channels.cache.get(channelGen);
-        channel2.send(`Bienvenue à ${member} !`);
+        channel2.send(`Bienvenue ${member} !`);
     }
     if (member.user.bot) member.roles.add(roleBot);
     console.log("member +")
