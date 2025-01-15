@@ -16,9 +16,10 @@ module.exports = {
         async execute(interaction) {
             const user = interaction.options.getUser("membre");
             const reason = interaction.options.getString("raison");
+            const member = await interaction.guild.members.fetch(user.id);
             const embed = new EmbedBuilder()
                 .setTitle("Avertissement")
-                .setDescription(`Le membre \`${user}\` a reçu un avertissement. Raison: \`${reason}\` `)
+                .setDescription(`Le membre \`${member.user}\` a reçu un avertissement. Raison: \`${reason}\` `)
                 .setColor(0xF68A11)
                 .setTimestamp()
 
