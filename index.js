@@ -89,6 +89,9 @@ client.on(Events.InteractionCreate, async interaction => {
         else if (interaction.commandName === "unmute") {
             return;
         }
+        else if (interaction.commandName === "warn") {
+            return;
+        }
         const embedC = new EmbedBuilder()
             .setTitle("Commande")
             .setDescription(`La commande \`${interaction.commandName}\` a été utilisée.`)

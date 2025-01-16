@@ -24,7 +24,7 @@ module.exports = {
             const channel = interaction.channels.cache.get(channelLogs);
             const embed = new EmbedBuilder()
                 .setTitle("Avertissement")
-                .setDescription(`Le membre \`${user}\` a reçu un avertissement. Raison: \`${reason}\` `)
+                .setDescription(`Le membre \`${member.user}\` a reçu un avertissement. Raison: \`${reason}\` `)
                 .setColor(0xF68A11)
                 .setTimestamp()
 
