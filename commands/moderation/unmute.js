@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const { EmbedBuilder } = require("@discordjs/builders");
 const {channelLogs} = require("../../json/channels.json");
+const {roleAdmin, roleAngi} = require("../../json/role.json")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -16,11 +17,11 @@ module.exports = {
         const channel = interaction.guild.channels.cache.get(channelLogs);
         const duration = 1;
         try {
-            if (member.roles.cache.has("1209450064720957490")) {
+            if (member.roles.cache.has(roleAdmin)) {
                 interaction.reply({content: "Tu ne peux pas unmute un admin !", ephemeral: true});
                 return;
             }
-            if (member.roles.cache.has("1209449963071873044")) {
+            if (member.roles.cache.has(roleAngi)) {
                 interaction.reply({content: "Tu ne peux pas unmute Angi !", ephemeral: true});
                 return;
             }

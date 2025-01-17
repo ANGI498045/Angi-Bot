@@ -1,6 +1,7 @@
 const {  SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
 const {channelLogs} = require("../../json/channels.json");
 const {clientId} = require("../../json/config.json");
+const {roleAdmin, roleAngi} = require("../../json/role.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -23,11 +24,11 @@ module.exports = {
             const channel = interaction.guild.channels.cache.get(channelLogs);
             const member = await interaction.guild.members.fetch(user.id);
             try {
-                if (member.roles.cache.has("1209450064720957490")) {
+                if (member.roles.cache.has(roleAdmin)) {
                     interaction.reply({content: "Tu ne peux pas kick un admin !", ephemeral: true});
                     return;
                 }
-                if (member.roles.cache.has("1209449963071873044")) {
+                if (member.roles.cache.has(roleAngi)) {
                     interaction.reply({content: "Tu ne peux pas kick Angi !", ephemeral: true});
                     return;
                 }
