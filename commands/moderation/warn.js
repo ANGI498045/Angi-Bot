@@ -11,20 +11,22 @@ module.exports = {
         .addUserOption(options =>
             options.setName("membre")
             .setDescription("Le membre à avertir")
+            .setRequired(true)
         )
         .addStringOption(options => 
             options.setName("raison")
             .setDescription("La raison pour laquelle tu l'avertis")
+            .setRequired(false)
         ),
         async execute(interaction) {
             
             const user = interaction.options.getUser("membre");
-            const reason = interaction.options.getString("raison");
+            const reason = interaction.options.getString("raison" || "Aucune raison précisée");
             const member = interaction.guild.members.fetch(user.id);
-            const channel = interaction.channels.cache.get(channelLogs);
+            const channel = interaction.guild.channels.cache.get(channelLogs);
             const embed = new EmbedBuilder()
                 .setTitle("Avertissement")
-                .setDescription(`Le membre \`${member.user}\` a reçu un avertissement. Raison: \`${reason}\` `)
+                .setDescription(`Le membre \`${user}\` a reçu un avertissement. Raison: \`${reason}\` `)
                 .setColor(0xF68A11)
                 .setTimestamp()
 
