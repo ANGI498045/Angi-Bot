@@ -1,6 +1,7 @@
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
 const {channelLogs} = require("../../json/channels.json");
 const {clientId} = require("../../json/config.json");
+const {roleAdmin, roleAngi} = require("../../json/role.json");
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -24,11 +25,11 @@ module.exports = {
             const member = await interaction.guild.members.fetch(user.id);
 
             try {
-                if (member.roles.cache.has("1209450064720957490")) {
+                if (member.roles.cache.has(roleAdmin)) {
                     interaction.reply({content: "Tu ne peux pas ban un admin !", ephemeral: true});
                     return;
                 }
-                if (member.roles.cache.has("1209449963071873044")) {
+                if (member.roles.cache.has(roleAngi)) {
                     interaction.reply({content: "Tu ne peux pas ban Angi !", ephemeral: true});
                     return;
                 }
@@ -39,7 +40,7 @@ module.exports = {
                 await interaction.guild.members.ban(user.id, { reason });
                 const embed = new EmbedBuilder()
                     .setTitle("Bannissement")
-                    .setDescription(`Le membre ${user} a été banni. Raison: ${reason}`)
+                    .setDescription(`Le membre ${member.user} a été banni. Raison: ${reason}`)
                     .setTimestamp()
                     .setColor(0xF68A11)
                 await channel.send({embeds: [embed]});
