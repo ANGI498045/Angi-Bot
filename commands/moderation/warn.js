@@ -1,6 +1,6 @@
 const { SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require("discord.js");
 const {clientId} = require("../../json/config.json");
-const {roleAngi} = require("../../json/role.json");
+const {roleAngi, roleBot} = require("../../json/role.json");
 const {channelLogs} = require("../../json/channels.json");
 
 module.exports = {
@@ -26,14 +26,17 @@ module.exports = {
             const channel = interaction.guild.channels.cache.get(channelLogs);
             const embed = new EmbedBuilder()
                 .setTitle("Avertissement")
-                .setDescription(`Le membre \`${user}\` a reçu un avertissement. Raison: \`${reason}\` `)
+                .setDescription(`Le membre ${user.id} a reçu un avertissement. Raison: \`${reason}\` `)
                 .setColor(0xF68A11)
                 .setTimestamp()
-
-            if (member.user.id === clientId) {interaction.reply({content: "Tu ne peux pas me faire d'avertissement !", ephemeral: true}); return;};
-            if (member.roles.cache.has(roleAngi)) {interaction.reply({content: "Tu ne peux pas avertir Angi !", ephemeral: true}); return;};
+            try {
+            //if (member.roles.cache.has(roleBot)) {interaction.reply({content: "Tu ne peux pas me faire d'avertissement !", ephemeral: true}); return;};
+            //if (member.roles.cache.has(roleAngi)) {interaction.reply({content: "Tu ne peux pas avertir Angi !", ephemeral: true}); return;};
             
-            await interaction.reply({embeds: [embed]});
-            await channel.send({embeds: [embed]});
+            interaction.reply({embeds: [embed]});
+            //await channel.send({embeds: [embed]});
+            } catch (error) {
+                console.error(error)
+            }
         }
 }
