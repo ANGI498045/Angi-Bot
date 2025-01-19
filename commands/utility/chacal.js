@@ -7,10 +7,11 @@ module.exports = {
         .addUserOption(option =>
             option.setName("membre")
             .setDescription("le membre à chacaliser")
+            .setRequired(true)
         ),
         async execute(interaction) {
-            const user = interaction.options.cache.getUser("membre");
+            const user = interaction.options.getUser("membre");
             const member = await interaction.guild.members.fetch(user.id);
-            await interaction.reply(`Le membre ${member.user} a bien été chacalisé !`)
+            interaction.reply(`${member.user} a bien été chacalisé !`)
         }
 }

@@ -8,15 +8,17 @@ module.exports = {
         .addUserOption(options =>
             options.setName("membre")
             .setDescription("Le membre à avertir")
+            .setRequired(true)
         )
         .addStringOption(options => 
             options.setName("raison")
             .setDescription("La raison pour laquelle tu l'avertis")
+            .setRequired(false)
         ),
         async execute(interaction) {
             const user = interaction.options.getUser("membre");
-            const reason = interaction.options.getString("raison");
-            const member = await interaction.guild.members.fetch(user.id);
+            const reason = interaction.options.getString("raison" || "Aucune raison précisée");
+            const member = interaction.guild.members.fetch(user.id);
             const embed = new EmbedBuilder()
                 .setTitle("Avertissement")
                 .setDescription(`Le membre \`${member.user}\` a reçu un avertissement. Raison: \`${reason}\` `)
