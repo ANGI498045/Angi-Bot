@@ -21,12 +21,12 @@ module.exports = {
         async execute(interaction) {
             
             const user = interaction.options.getUser("membre");
-            const reason = interaction.options.getString("raison" || "Aucune raison précisée");
+            const reason = interaction.options.getString("raison") || "Aucune raison précisée";
             const member = interaction.guild.members.fetch(user.id);
             const channel = interaction.guild.channels.cache.get(channelLogs);
             const embed = new EmbedBuilder()
                 .setTitle("Avertissement")
-                .setDescription(`Le membre ${user.id} a reçu un avertissement. Raison: \`${reason}\` `)
+                .setDescription(`Le membre ${user} a reçu un avertissement. Raison: \`${reason}\` `)
                 .setColor(0xF68A11)
                 .setTimestamp()
             try {
@@ -34,7 +34,7 @@ module.exports = {
             //if (member.roles.cache.has(roleAngi)) {interaction.reply({content: "Tu ne peux pas avertir Angi !", ephemeral: true}); return;};
             
             interaction.reply({embeds: [embed]});
-            //await channel.send({embeds: [embed]});
+            await channel.send({embeds: [embed]});
             } catch (error) {
                 console.error(error)
             }
