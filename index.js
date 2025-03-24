@@ -1,6 +1,6 @@
 const { Client, GatewayIntentBits, Events, ActivityType, Collection } = require("discord.js");
 const { token } = require("./json/config.json");
-const { roleView, roleBot } = require("./json/role.json");
+const { roleView, roleBot, roleCS, roleMC, roleVal, roleFtn, roleGTA } = require("./json/role.json");
 const { channelPlane, channelLogs, channelGen } = require("./json/channels.json")
 const { EmbedBuilder } = require("@discordjs/builders");
 const client = new Client({ 
@@ -112,11 +112,20 @@ client.on(Events.InteractionCreate, async interaction => {
 
 //réaction + (roleréaction)
 client.on("messageReactionAdd", async (reaction, user, message) => {
-    if (reaction.emoji.name === "gta") reaction.message.guild.members.cache.get(user.id).roles.add("1308845315754819614");
-    if (reaction.emoji.name === "cs2") reaction.message.guild.members.cache.get(user.id).roles.add("1306275219219939408");
-    if (reaction.emoji.name === "ftn") reaction.message.guild.members.cache.get(user.id).roles.add("1306275421045653576");
-    if (reaction.emoji.name === "mc") reaction.message.guild.members.cache.get(user.id).roles.add("1308846500348170400");
-    if (reaction.emoji.name === "valorant") reaction.message.guild.members.cache.get(user.id).roles.add("1306275427374858260");
+    if (reaction.emoji.name === "gta") reaction.message.guild.members.cache.get(user.id).roles.add(roleGTA);
+    if (reaction.emoji.name === "cs2") reaction.message.guild.members.cache.get(user.id).roles.add(roleCS);
+    if (reaction.emoji.name === "ftn") reaction.message.guild.members.cache.get(user.id).roles.add(roleFtn);
+    if (reaction.emoji.name === "mc") reaction.message.guild.members.cache.get(user.id).roles.add(roleMC);
+    if (reaction.emoji.name === "valorant") reaction.message.guild.members.cache.get(user.id).roles.add(roleVal);
 });
+
+client.on("messageCreate", async message => {
+    if (message.author.id === "1209458000247398420") {
+        return;
+    }
+    if (message.content.includes("bumpé")) {
+        message.reply(`Merci ${message.author} pour ton bump ! Voici ta récompense: 1 bump point.`)
+    }
+})
 
 client.login(token)
