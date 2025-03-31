@@ -119,14 +119,6 @@ client.on("messageReactionAdd", async (reaction, user, message) => {
     if (reaction.emoji.name === "valorant") reaction.message.guild.members.cache.get(user.id).roles.add(roleVal);
 });
 
-client.on("messageCreate", async message => {
-    if (message.author.id === "1209458000247398420") {
-        return;
-    }
-    if (message.content.includes("bumpé")) {
-        message.reply(`Merci ${message.author} pour ton bump ! Voici ta récompense: 1 bump point.`);
-    }
-});
 //automod
 client.on("messageCreate", async message => {
     if (message.content.includes("noob")) {
