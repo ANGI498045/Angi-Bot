@@ -124,7 +124,16 @@ client.on("messageCreate", async message => {
         return;
     }
     if (message.content.includes("bumpé")) {
-        message.reply(`Merci ${message.author} pour ton bump ! Voici ta récompense: 1 bump point.`)
+        message.reply(`Merci ${message.author} pour ton bump ! Voici ta récompense: 1 bump point.`);
+    }
+});
+//automod
+client.on("messageCreate", async message => {
+    if (message.content.includes("noob")) {
+        message.reply(`${message.author} Veille à ton vocabulaire.`)
+    }
+    else if (message.content.includes("Noob")) {
+        message.reply(`${message.author} Veille à ton vocabulaire.`)
     }
 })
 

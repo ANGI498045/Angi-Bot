@@ -30,8 +30,6 @@ module.exports = {
                 .setColor(0xF68A11)
                 .setTimestamp()
             try {
-            //if (member.roles.cache.has(roleBot)) {interaction.reply({content: "Tu ne peux pas me faire d'avertissement !", ephemeral: true}); return;};
-            //if (member.roles.cache.has(roleAngi)) {interaction.reply({content: "Tu ne peux pas avertir Angi !", ephemeral: true}); return;};
             
             interaction.reply({embeds: [embed]});
             await channel.send({embeds: [embed]});
