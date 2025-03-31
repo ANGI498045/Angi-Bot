@@ -135,6 +135,10 @@ client.on("messageCreate", async message => {
     else if (message.content.includes("Noob")) {
         message.reply(`${message.author} Veille à ton vocabulaire.`)
     }
+    else if (message.author.id === "1295084337863065655") {
+        message.react("🦧");
+        console.log("ok");
+    }
 })
 
 client.login(token)
