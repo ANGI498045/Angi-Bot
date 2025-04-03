@@ -4,7 +4,7 @@ const {channelBot} = require("../../json/channels.json");
 const embed = new EmbedBuilder()
     .setTitle("Rappel de Bump")
     .addFields({name: "C'est l'heure du bump !", value: "Allez-y, bumpez !"})
-    .setTimestamp()
+    .setColor(0x0099ff)
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("bump")

@@ -94,7 +94,7 @@ client.on(Events.InteractionCreate, async interaction => {
         }
         const embedC = new EmbedBuilder()
             .setTitle("Commande")
-            .setDescription(`La commande \`${interaction.commandName}\` a été utilisée.`)
+            .setDescription(`La commande \`${interaction.commandName}\` a été utilisée par ${interaction.member.user}.`)
             .setColor(0x0099ff)
             .setTimestamp();
         channel.send({embeds: [embedC]});
@@ -126,10 +126,6 @@ client.on("messageCreate", async message => {
     }
     else if (message.content.includes("Noob")) {
         message.reply(`${message.author} Veille à ton vocabulaire.`)
-    }
-    else if (message.author.id === "1295084337863065655") {
-        message.react("🦧");
-        console.log("ok");
     }
 })
 
