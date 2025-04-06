@@ -17,7 +17,7 @@ module.exports = {
       };
       
       const sample = async () => {
-        let delayres = await delay(1000*60*150);
+        let delayres = await delay(1000*60*90);
         channel.send({embeds: [embed]});
       };
       sample();
