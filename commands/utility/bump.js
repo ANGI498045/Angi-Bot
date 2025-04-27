@@ -1,6 +1,7 @@
 const { EmbedBuilder } = require("@discordjs/builders");
 const { SlashCommandBuilder } = require("discord.js");
 const {channelBot} = require("../../json/channels.json");
+const {roleBump} = require("../../json/role.json");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName("bump")
@@ -18,7 +19,7 @@ module.exports = {
       
       const sample = async () => {
         let delayres = await delay(1000*60*120);
-        channel.send({embeds: [embed]});
+        channel.send(roleBump, {embeds: [embed]});
       };
       sample();
 }
