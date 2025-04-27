@@ -18,8 +18,8 @@ module.exports = {
       };
       
       const sample = async () => {
-        let delayres = await delay(1000*60*120);
-        channel.send(roleBump, {embeds: [embed]});
+        let delayres = await delay(1000*5/*60*120*/);
+        channel.send("<@&" + roleBump + ">" + {embeds: [embed]});
       };
       sample();
 }
