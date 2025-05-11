@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "db": "^6.0.3",
     "discord.js": "^14.18.0",
     "mysql": "^2.18.1",
     "toad-scheduler": "^3.0.1"
