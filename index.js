@@ -13,11 +13,11 @@ const {database} = require("./loaders/database");
 
 client.on(Events.ClientReady, async readyClient => {
     console.log(`Bot ${readyClient.user.tag} online`)
-    client.user.setActivity({type: ActivityType.Custom, name: "status", state: "Veille sur les membres de la Galette"});
+    /*client.user.setActivity({type: ActivityType.Custom, name: "status", state: "Veille sur les membres de la Galette"});
     client.db = await database();
     client.db.connect(function () {
     console.log("database logged in");
-})
+})*/
 });
 
 client.on(Events.GuildMemberAdd, async (member) => {
