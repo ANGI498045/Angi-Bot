@@ -11,6 +11,8 @@ message.txt
 3 KB
 ﻿
 config.json
+package-lock.json
+package.json
 # Logs
 logs
 *.log
