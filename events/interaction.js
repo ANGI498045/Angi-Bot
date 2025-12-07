@@ -1,4 +1,5 @@
-const { Events } = require("discord.js");
+const { Events, EmbedBuilder } = require("discord.js");
+const {channelLogs} = require("../json/channels.json");
 
 module.exports = {
     name: Events.InteractionCreate,
