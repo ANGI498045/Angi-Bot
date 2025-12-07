@@ -11,43 +11,6 @@ const path = require("node:path");
 const fs = require("node:fs");
 const {database} = require("./loaders/database");
 
-client.on(Events.ClientReady, async readyClient => {
-    console.log(`Bot ${readyClient.user.tag} online`)
-    client.user.setActivity({type: ActivityType.Custom, name: "status", state: "Veille sur les membres de la Galette"});
-    /*client.db = await database();
-    client.db.connect(function () {
-    console.log("database logged in");
-})*/
-});
-
-client.on(Events.GuildMemberAdd, async (member) => {
-    const embed = new EmbedBuilder()
-        .addFields({name: "Nouveau Membre", value: `${member.user} a rejoint le serveur ! Bienvenue !`})
-        .setColor(0x0099ff)
-        .setTimestamp()
-    if (!member.user.bot) {
-        member.roles.add(roleView);
-        if (member.user.id === "994167928989696020") return;
-        const channel = client.channels.cache.get(channelPlane);
-        channel.send({embeds: [embed]});
-        const channel2 = client.channels.cache.get(channelGen);
-        channel2.send(`Bienvenue ${member} !`);
-    }
-    if (member.user.bot) member.roles.add(roleBot);
-    console.log("member +")
-});
-
-client.on(Events.GuildMemberRemove, async (member) => {
-    const embed = new EmbedBuilder()
-        .addFields({name: "Départ", value:`${member.user.tag} a quitté le serveur...`})
-        .setColor(0x0099ff)
-        .setTimestamp()
-    const channel = client.channels.cache.get(channelPlane);
-    if (member.user.bot) return;
-    channel.send({ embeds: [embed] });
-    console.log("member -")
-});
-
 client.commands = new Collection();
 
 const foldersPath = path.join(__dirname, "commands");
@@ -64,6 +27,19 @@ for (const folder of commandFolders) {
         } else {
             console.log(`La commande ne marche pas à ${filePath}.;`)
         }
+    }
+}
+
+const eventsPath = path.join(__dirname, "events");
+const eventsFile = fs.readdirSync(eventsPath)
+
+for (const file of eventsFile) {
+    const filePath = path.join(eventsPath, file);
+    const event = require(filePath);
+    if (event.once) {
+        client.once(event.name, (... args) => event.execute(... args));
+    } else {
+        client.on(event.name, (...args) => event.execute(...args));
     }
 }
 
@@ -113,15 +89,6 @@ client.on(Events.InteractionCreate, async interaction => {
                 .setColor(0xC11919);
         channel.send({embeds: [embedErr]});
     }
-});
-
-//réaction + (roleréaction)
-client.on("messageReactionAdd", async (reaction, user, message) => {
-    if (reaction.emoji.name === "gta") reaction.message.guild.members.cache.get(user.id).roles.add(roleGTA);
-    if (reaction.emoji.name === "cs2") reaction.message.guild.members.cache.get(user.id).roles.add(roleCS);
-    if (reaction.emoji.name === "ftn") reaction.message.guild.members.cache.get(user.id).roles.add(roleFtn);
-    if (reaction.emoji.name === "mc") reaction.message.guild.members.cache.get(user.id).roles.add(roleMC);
-    if (reaction.emoji.name === "valorant") reaction.message.guild.members.cache.get(user.id).roles.add(roleVal);
 });
 
 //automod
