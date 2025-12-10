@@ -14,7 +14,7 @@ module.exports = {
         if (member.user.id === "994167928989696020") return;
         const channel = member.client.channels.cache.get(channelPLane);
         channel.send({embeds: [embed]});
-        const channel2 = memeber.client.channels.cache.get(channelGen);
+        const channel2 = member.client.channels.cache.get(channelGen);
         channel2.send(`Bienvenue ${member} !`);
     }
     if (member.user.bot) member.roles.add(roleBot);
