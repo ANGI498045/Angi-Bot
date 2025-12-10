@@ -4,7 +4,7 @@ const {channelLogs} = require("../json/channels.json");
 module.exports = {
     name: Events.MessageCreate,
     execute(message) {
-    channel = message.channels.guild.cache.get(channelLogs)
+    channel = message.client.channels.guild.cache.get(channelLogs)
     if (message.content.includes("noob")) {
         message.reply(`${message.author} Veille à ton vocabulaire.`)
     }
