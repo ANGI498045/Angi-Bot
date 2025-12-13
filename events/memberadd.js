@@ -1,5 +1,6 @@
 const { Events, EmbedBuilder } = require("discord.js");
 const {channelPlane, channelGen} = require("../json/channels.json");
+const {roleView, roleBot} = require("../json/role.json");
 
 module.exports = {
     name: Events.GuildMemberAdd,
@@ -12,7 +13,7 @@ module.exports = {
     if (!member.user.bot) {
         member.roles.add(roleView);
         if (member.user.id === "994167928989696020") return;
-        const channel = member.client.channels.cache.get(channelPLane);
+        const channel = member.client.channels.cache.get(channelPlane);
         channel.send({embeds: [embed]});
         const channel2 = member.client.channels.cache.get(channelGen);
         channel2.send(`Bienvenue ${member} !`);
