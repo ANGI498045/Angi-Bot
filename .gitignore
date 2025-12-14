@@ -1,6 +1,15 @@
 config.json
 package-lock.json
 package.json
+details.md
+diff-details.md
+diff.csv
+diff.md
+diff.txt
+results.csv
+results.json
+results.md
+results.txt
 # Logs
 logs
 *.log
