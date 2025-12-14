@@ -1,5 +1,5 @@
 const { Events, EmbedBuilder } = require("discord.js");
-const {channelPlane} = require("../json/channels.json")
+const {channelPlane} = require("../json/channels.json");
 
 module.exports = {
     name: Events.GuildMemberRemove,
