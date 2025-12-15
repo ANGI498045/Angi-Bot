@@ -3,7 +3,6 @@ const {channelPlane} = require("../json/channels.json");
 
 module.exports = {
     name: Events.GuildMemberRemove,
-    once: true,
     execute(client) {
     const embed = new EmbedBuilder()
         .addFields({name: "Départ", value:`${member.user.tag} a quitté le serveur...`})
